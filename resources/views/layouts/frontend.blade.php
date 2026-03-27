@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,15 @@
     <title>@yield('title', 'KUPPET Homabay Branch')</title>
 
     {{-- SEO Meta --}}
-    <meta name="description" content="KUPPET Homabay Branch - Kenya Union of Post Primary Education Teachers. Promoting teacher welfare, professional development, and quality education in Homabay, Kenya.">
-    <meta name="keywords" content="KUPPET, Kenya Union of Post Primary Education Teachers, Homabay teachers, teacher welfare, education development, teacher union, post-primary education, professional development, education advocacy, Homabay Branch">
+    <meta name="description"
+        content="KUPPET Homabay Branch - Kenya Union of Post Primary Education Teachers. Promoting teacher welfare, professional development, and quality education in Homabay, Kenya.">
+    <meta name="keywords"
+        content="KUPPET, Kenya Union of Post Primary Education Teachers, Homabay teachers, teacher welfare, education development, teacher union, post-primary education, professional development, education advocacy, Homabay Branch">
 
     {{-- Open Graph / Social Sharing --}}
     <meta property="og:title" content="@yield('title', 'KUPPET Homabay Branch')">
-    <meta property="og:description" content="KUPPET Homabay Branch - Advancing teacher welfare, professional growth, and educational development in Kenya.">
+    <meta property="og:description"
+        content="KUPPET Homabay Branch - Advancing teacher welfare, professional growth, and educational development in Kenya.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('images/kupet-homabay-logo.png') }}">
@@ -21,13 +25,16 @@
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', 'KUPPET Homabay Branch')">
-    <meta name="twitter:description" content="KUPPET Homabay Branch - Advancing teacher welfare, professional growth, and educational development in Kenya.">
+    <meta name="twitter:description"
+        content="KUPPET Homabay Branch - Advancing teacher welfare, professional growth, and educational development in Kenya.">
     <meta name="twitter:image" content="{{ asset('images/kupet-homabay-logo.png') }}">
 
     {{-- FAVICONS --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon_io/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon_io/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ asset('assets/images/favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/images/favicon_io/site.webmanifest') }}">
     <link rel="icon" href="{{ asset('assets/images/favicon_io/favicon.ico') }}" type="image/x-icon">
 
@@ -53,7 +60,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
 </head>
+
 <body class="bg-gray-light text-gray-dark font-sans">
 
     {{-- Header --}}
@@ -76,4 +90,5 @@
     </script>
 
 </body>
+
 </html>

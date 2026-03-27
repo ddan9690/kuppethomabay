@@ -11,6 +11,7 @@
             <a href="{{ url('/') }}" class="hover:text-gold transition font-medium">Home</a>
             <a href="{{ url('/bec-office') }}" class="hover:text-gold transition font-medium">BEC Office</a>
             <a href="{{ url('/reports') }}" class="hover:text-gold transition font-medium">Reports</a>
+            <a href="{{ url('/agency-payer') }}" class="hover:text-gold transition font-medium">Agency Payer</a>
 
             {{-- Resources Dropdown --}}
             <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
@@ -90,6 +91,7 @@
         <a href="{{ url('/') }}" class="block px-4 py-2 hover:bg-green-dark transition">Home</a>
         <a href="{{ url('/bec-office') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC Office</a>
         <a href="{{ url('/reports') }}" class="block px-4 py-2 hover:bg-green-dark transition">Reports</a>
+        <a href="{{ url('/agency-payer') }}" class="block px-4 py-2 hover:bg-green-dark transition">Agency Payer</a>
 
         {{-- Mobile Resources --}}
         <div x-data="{ open: false }" class="border-t border-green-dark">

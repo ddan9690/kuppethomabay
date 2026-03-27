@@ -4,19 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SubCounty extends Model
+class AgencyPayer extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
         'full_name',
         'sub_county_id',
         'tsc_no',
         'phone',
-        'branch',
-        'agency_fee_active',
     ];
 
-   
-    public function subCounty()
+     public function subCounty()
     {
         return $this->belongsTo(SubCounty::class);
     }
