@@ -7,33 +7,38 @@
         </h2>
 
         {{-- News Items Grid --}}
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-8 md:grid-cols-2">
 
-            {{-- Example News Item --}}
-            <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-green mb-2">Teachers’ Workshop in Homabay</h3>
-                <p class="text-gray-dark mb-4">
-                    Our branch recently conducted a professional development workshop aimed at improving teaching methods and promoting collaboration among educators.
-                </p>
-                <a href="#" class="text-gold hover:text-gold-dark font-semibold transition">Read More →</a>
+            {{-- News Item 1 --}}
+            <div class="bg-white rounded shadow hover:shadow-lg transition overflow-hidden">
+                <img src="/assets/images/kuppet-homabay-visits-sha-officer-homabay-referral-hospital.jpg" 
+                     alt="BEC consultative meeting with Homabay referral hospital" 
+                     class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-green mb-2">
+                        BEC Consultative Meeting
+                    </h3>
+                    <p class="text-gray-dark mb-4">
+                        BEC members held a consultative meeting with the Homabay County Referral Hospital management on ways to improve service delivery under the Mwalimu Comprehensive Medical Cover.
+                    </p>
+                    <a href="#" class="text-gold hover:text-gold-dark font-semibold transition">Read More →</a>
+                </div>
             </div>
 
-            {{-- Example News Item --}}
-            <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-green mb-2">Union Advocacy Success</h3>
-                <p class="text-gray-dark mb-4">
-                    KUPPET Homabay branch successfully negotiated better welfare provisions for teachers in local schools, marking a step forward in professional support.
-                </p>
-                <a href="#" class="text-gold hover:text-gold-dark font-semibold transition">Read More →</a>
-            </div>
-
-            {{-- Example News Item --}}
-            <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-green mb-2">Upcoming Teacher Elections</h3>
-                <p class="text-gray-dark mb-4">
-                    Stay informed about the upcoming branch elections and get involved in shaping the future leadership of KUPPET Homabay.
-                </p>
-                <a href="#" class="text-gold hover:text-gold-dark font-semibold transition">Read More →</a>
+            {{-- News Item 2 --}}
+            <div class="bg-white rounded shadow hover:shadow-lg transition overflow-hidden">
+                <img src="/assets/images/kuppet-homabay-bec-assessment-services-st-camillus-hospital-sori.jpg" 
+                     alt="KUPPET Homa Bay BEC assessment at St Camillus Hospital Sori" 
+                     class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-green mb-2">
+                        BEC Assessment at St Camillus Hospital, Sori
+                    </h3>
+                    <p class="text-gray-dark mb-4">
+                        KUPPET Homa Bay BEC conducted an assessment of medical service provision at St Camillus Mission Hospital, Sori, to ensure quality service under the medical cover program.
+                    </p>
+                    <a href="#" class="text-gold hover:text-gold-dark font-semibold transition">Read More →</a>
+                </div>
             </div>
 
         </div>

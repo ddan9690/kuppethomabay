@@ -24,6 +24,16 @@
     <meta name="twitter:description" content="KUPPET Homabay Branch - Advancing teacher welfare, professional growth, and educational development in Kenya.">
     <meta name="twitter:image" content="{{ asset('images/kupet-homabay-logo.png') }}">
 
+    {{-- FAVICONS --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon_io/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/images/favicon_io/site.webmanifest') }}">
+    <link rel="icon" href="{{ asset('assets/images/favicon_io/favicon.ico') }}" type="image/x-icon">
+
+    {{-- Optional Theme Color --}}
+    <meta name="theme-color" content="#16a34a"> {{-- Tailwind green --}}
+
     {{-- Tailwind + Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

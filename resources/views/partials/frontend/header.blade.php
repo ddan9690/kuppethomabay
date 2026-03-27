@@ -1,4 +1,4 @@
-<header x-data="{ open: false }" class="bg-green text-white shadow">
+<header x-data="{ open: false, bbfOpen: false }" class="bg-green text-white shadow">
     <div class="container mx-auto flex items-center justify-between p-4">
 
         {{-- Logo / Brand --}}
@@ -9,9 +9,23 @@
         {{-- Desktop Navigation --}}
         <nav class="hidden md:flex items-center space-x-6">
             <a href="{{ url('/') }}" class="hover:text-gold transition font-medium">Home</a>
-            <a href="{{ url('/about') }}" class="hover:text-gold transition font-medium">About Us</a>
+            <a href="{{ url('/bec-office') }}" class="hover:text-gold transition font-medium">BEC Office</a>
+            <a href="{{ url('/reports') }}" class="hover:text-gold transition font-medium">Reports</a>
+
+            {{-- BBF Dropdown --}}
+            <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                <button class="hover:text-gold transition font-medium flex items-center gap-1">
+                    BBF <i class='bx bx-chevron-down text-sm'></i>
+                </button>
+                <div x-show="open" 
+                     x-transition
+                     class="absolute bg-green mt-2 rounded shadow-lg w-48 z-50">
+                    <a href="{{ url('/bbf/constitution') }}" class="block px-4 py-2 hover:bg-green-dark transition">Constitution</a>
+                    <a href="{{ url('/bbf/make-claim') }}" class="block px-4 py-2 hover:bg-green-dark transition">Make Claim</a>
+                </div>
+            </div>
+
             <a href="{{ url('/news') }}" class="hover:text-gold transition font-medium">News</a>
-            <a href="{{ url('/contact') }}" class="hover:text-gold transition font-medium">Contact</a>
 
             @guest
                 {{-- Login Button --}}
@@ -61,9 +75,21 @@
         class="md:hidden bg-green text-white"
     >
         <a href="{{ url('/') }}" class="block px-4 py-2 hover:bg-green-dark transition">Home</a>
-        <a href="{{ url('/about') }}" class="block px-4 py-2 hover:bg-green-dark transition">About Us</a>
+        <a href="{{ url('/bec-office') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC Office</a>
+        <a href="{{ url('/reports') }}" class="block px-4 py-2 hover:bg-green-dark transition">Reports</a>
+
+        {{-- Mobile BBF Dropdown --}}
+        <div x-data="{ open: false }" class="border-t border-green-dark">
+            <button @click="open = !open" class="w-full text-left px-4 py-2 hover:bg-green-dark flex justify-between items-center">
+                BBF <i :class="open ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
+            </button>
+            <div x-show="open" x-transition class="bg-green-dark">
+                <a href="{{ url('/bbf/constitution') }}" class="block px-6 py-2 hover:bg-green transition">Constitution</a>
+                <a href="{{ url('/bbf/make-claim') }}" class="block px-6 py-2 hover:bg-green transition">Make Claim</a>
+            </div>
+        </div>
+
         <a href="{{ url('/news') }}" class="block px-4 py-2 hover:bg-green-dark transition">News</a>
-        <a href="{{ url('/contact') }}" class="block px-4 py-2 hover:bg-green-dark transition">Contact</a>
 
         @guest
             {{-- Mobile Login --}}
