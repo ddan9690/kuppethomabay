@@ -25,7 +25,7 @@
                 <thead class="bg-green text-white">
                     <tr>
                         <th class="p-2 border">#</th>
-                        <th class="p-2 border">Full Name</th>
+                        <th class="p-2 border">Name</th>
                         <th class="p-2 border">Sub-County</th>
                         <th class="p-2 border">TSC Number</th>
                         <th class="p-2 border">Phone</th>

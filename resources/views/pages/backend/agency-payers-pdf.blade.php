@@ -60,7 +60,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Full Name</th>
+                <th>Name</th>
                 <th>Sub-County</th>
                 <th>TSC Number</th>
                 <th>Phone</th>
