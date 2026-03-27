@@ -1,68 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password | KUPPET Homabay</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+@extends('layouts.backend')
 
-</head>
-<body class="bg-gray-light flex items-center justify-center min-h-screen">
+@section('title', 'Reset Password')
 
-    <div class="w-full max-w-md bg-white p-10 rounded-3xl shadow-xl flex flex-col items-center">
-        
-        <!-- Logo -->
-        <img src="{{ asset('assets/images/kuppet-logo.jpg') }}" alt="KUPPET Logo" class="w-24 h-24 object-contain mb-4">
+@section('content')
+<div class="flex items-center justify-center h-full">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center mb-6">Change Your Password</h2>
 
-        <!-- Branding -->
-        <h1 class="text-2xl md:text-3xl font-extrabold text-green-dark mb-10 text-center">
-            Homabay <span class="text-gold">Branch</span>
-        </h1>
-
-        <!-- Session / Errors -->
-        @if(session('success'))
-            <div class="w-full bg-green text-white p-2 rounded mb-4 text-center">{{ session('success') }}</div>
-        @endif
-
-        @if($errors->any())
-            <div class="w-full bg-red text-white p-2 rounded mb-4 text-center">
-                {{ $errors->first() }}
+        {{-- Show validation errors --}}
+        @if ($errors->any())
+            <div class="mb-4">
+                <ul class="list-disc list-inside text-red-500 text-sm">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
 
-        <!-- Reset Form -->
-        <form action="{{ route('password.reset') }}" method="POST" class="w-full flex flex-col gap-6">
+        <form method="POST" action="{{ route('password.reset') }}">
             @csrf
 
-            <input 
-                type="text" 
-                name="login" 
-                placeholder="Email or Phone" 
-                class="w-full p-4 border border-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-green-dark transition"
-                required
-            >
+            {{-- New Password --}}
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 mb-2">New Password</label>
+                <input type="password" name="password" id="password" required
+                       class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green focus:border-green">
+            </div>
 
-            <input 
-                type="password" 
-                name="password" 
-                placeholder="New Password" 
-                class="w-full p-4 border border-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-green-dark transition"
-                required
-            >
+            {{-- Confirm Password --}}
+            <div class="mb-6">
+                <label for="password_confirmation" class="block text-gray-700 mb-2">Confirm Password</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" required
+                       class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green focus:border-green">
+            </div>
 
-            <input 
-                type="password" 
-                name="password_confirmation" 
-                placeholder="Confirm Password" 
-                class="w-full p-4 border border-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-green-dark transition"
-                required
-            >
-
-            <button type="submit" class="w-full bg-green-dark text-white p-4 rounded-xl font-bold hover:bg-green transition">
-                Reset Password
+            {{-- Submit --}}
+            <button type="submit" 
+                    class="w-full bg-green hover:bg-green-dark text-white font-bold py-2 px-4 rounded transition mb-4">
+                Update Password
             </button>
         </form>
-    </div>
 
-</body>
-</html>
+        {{-- Back to Dashboard --}}
+        <a href="{{ route('dashboard') }}" 
+           class="block text-center text-green hover:text-green-dark font-semibold">
+            &larr; Back to Dashboard
+        </a>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<script>
+    // Toastr notifications for success or error
+    @if(session('success'))
+        toastr.success("{{ session('success') }}");
+    @endif
+
+    @if(session('error'))
+        toastr.error("{{ session('error') }}");
+    @endif
+</script>
+@endpush

@@ -9,17 +9,24 @@ Route::get('/', function () {
     return view('pages.frontend.home');
 });
 
+Route::get('/downloads', function () {
+    return view('pages.frontend.downloads');
+})->name('downloads');
+
+Route::get('/bec-circulars', function () {
+    return view('pages.frontend.circulars');
+})->name('circulars');
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.submit');
-    Route::get('password/reset', [AuthController::class, 'showResetForm'])->name('password.request');
-    Route::post('password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
 });
 
 
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('password/reset', [AuthController::class, 'showResetForm'])->name('password.request');
+    Route::post('password/reset', [AuthController::class, 'changePassword'])->name('password.reset');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
 });

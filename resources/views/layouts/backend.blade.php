@@ -19,6 +19,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
+    {{-- Toastr CSS --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     @stack('styles')
 </head>
 <body class="bg-gray-light flex h-screen font-sans overflow-hidden" x-data="{ sidebarOpen: false }">
@@ -40,12 +43,23 @@
         @include('partials.backend.footer')
     </div>
 
+    {{-- Toastr JS --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     @stack('scripts')
     <script>
         // Initialize DataTables
         document.addEventListener('DOMContentLoaded', function () {
             $('.datatable').DataTable();
         });
+
+        // Example Toastr usage
+        @if(session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if(session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
     </script>
 </body>
 </html>

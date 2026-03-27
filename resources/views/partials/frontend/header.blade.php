@@ -1,4 +1,4 @@
-<header x-data="{ open: false, bbfOpen: false }" class="bg-green text-white shadow">
+<header x-data="{ open: false }" class="bg-green text-white shadow">
     <div class="container mx-auto flex items-center justify-between p-4">
 
         {{-- Logo / Brand --}}
@@ -11,6 +11,22 @@
             <a href="{{ url('/') }}" class="hover:text-gold transition font-medium">Home</a>
             <a href="{{ url('/bec-office') }}" class="hover:text-gold transition font-medium">BEC Office</a>
             <a href="{{ url('/reports') }}" class="hover:text-gold transition font-medium">Reports</a>
+
+            {{-- Resources Dropdown --}}
+            <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                <button class="hover:text-gold transition font-medium flex items-center gap-1">
+                    Resources <i class='bx bx-chevron-down text-sm'></i>
+                </button>
+                <div x-show="open" 
+                     x-transition
+                     class="absolute bg-green mt-2 rounded shadow-lg w-56 z-50">
+                    <a href="{{ url('/downloads') }}" class="block px-4 py-2 hover:bg-green-dark transition">Downloads</a>
+                    <a href="{{ url('/bec-circulars') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC Circulars</a>
+                    <a href="{{ url('/petitions-memoranda') }}" class="block px-4 py-2 hover:bg-green-dark transition">
+                        Petitions & Memoranda
+                    </a>
+                </div>
+            </div>
 
             {{-- BBF Dropdown --}}
             <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
@@ -28,7 +44,6 @@
             <a href="{{ url('/news') }}" class="hover:text-gold transition font-medium">News</a>
 
             @guest
-                {{-- Login Button --}}
                 <a href="{{ route('login') }}"
                    class="ml-4 bg-gold text-green px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition">
                     Login
@@ -36,13 +51,11 @@
             @endguest
 
             @auth
-                {{-- Dashboard Link --}}
                 <a href="{{ route('dashboard') }}"
                    class="ml-4 bg-gold text-green px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition">
                     Dashboard
                 </a>
 
-                {{-- Logout Form --}}
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
                     <button type="submit"
@@ -78,7 +91,21 @@
         <a href="{{ url('/bec-office') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC Office</a>
         <a href="{{ url('/reports') }}" class="block px-4 py-2 hover:bg-green-dark transition">Reports</a>
 
-        {{-- Mobile BBF Dropdown --}}
+        {{-- Mobile Resources --}}
+        <div x-data="{ open: false }" class="border-t border-green-dark">
+            <button @click="open = !open" class="w-full text-left px-4 py-2 hover:bg-green-dark flex justify-between items-center">
+                Resources <i :class="open ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
+            </button>
+            <div x-show="open" x-transition class="bg-green-dark">
+                <a href="{{ url('/downloads') }}" class="block px-6 py-2 hover:bg-green transition">Downloads</a>
+                <a href="{{ url('/bec-circulars') }}" class="block px-6 py-2 hover:bg-green transition">BEC Circulars</a>
+                <a href="{{ url('/petitions-memoranda') }}" class="block px-6 py-2 hover:bg-green transition">
+                    Petitions & Memoranda
+                </a>
+            </div>
+        </div>
+
+        {{-- Mobile BBF --}}
         <div x-data="{ open: false }" class="border-t border-green-dark">
             <button @click="open = !open" class="w-full text-left px-4 py-2 hover:bg-green-dark flex justify-between items-center">
                 BBF <i :class="open ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
@@ -92,7 +119,6 @@
         <a href="{{ url('/news') }}" class="block px-4 py-2 hover:bg-green-dark transition">News</a>
 
         @guest
-            {{-- Mobile Login --}}
             <a href="{{ route('login') }}" 
                class="block px-4 py-2 bg-gold text-green font-semibold hover:bg-yellow-400 transition">
                 Login
@@ -100,13 +126,11 @@
         @endguest
 
         @auth
-            {{-- Mobile Dashboard --}}
             <a href="{{ route('dashboard') }}"
                class="block px-4 py-2 bg-gold text-green font-semibold hover:bg-yellow-400 transition">
                 Dashboard
             </a>
 
-            {{-- Mobile Logout --}}
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"

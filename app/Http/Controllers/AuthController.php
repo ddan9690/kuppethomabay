@@ -56,26 +56,22 @@ class AuthController extends Controller
     }
 
     // Reset password
-    public function resetPassword(Request $request)
+
+    public function changePassword(Request $request)
     {
+        // Validate password and confirmation
         $request->validate([
-            'login' => 'required|string',  // email or phone
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+        // Get the currently authenticated user
+        $user = Auth::user();
 
-        $user = User::where($loginType, $request->login)->first();
-
-        if (!$user) {
-            throw ValidationException::withMessages([
-                'login' => ['No user found with this login.'],
-            ]);
-        }
-
+        // Update password
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('login')->with('success', 'Password reset successful. You can now login.');
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Password changed successfully.');
     }
 }
