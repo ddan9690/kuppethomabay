@@ -62,7 +62,7 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Sub-County</th>
-                <th>TSC Number</th>
+                <th>TSC No.</th>
                 <th>Phone</th>
                 <th>Submitted On</th>
             </tr>

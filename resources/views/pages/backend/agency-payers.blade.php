@@ -27,7 +27,7 @@
                         <th class="p-2 border">#</th>
                         <th class="p-2 border">Name</th>
                         <th class="p-2 border">Sub-County</th>
-                        <th class="p-2 border">TSC Number</th>
+                        <th class="p-2 border">TSC No.</th>
                         <th class="p-2 border">Phone</th>
                         <th class="p-2 border">Submitted On</th>
                     </tr>
