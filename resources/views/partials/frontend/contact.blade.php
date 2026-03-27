@@ -17,7 +17,7 @@
 
             {{-- Name --}}
             <div>
-                <label class="block text-gray-dark font-medium mb-2" for="name">Full Name</label>
+                <label class="block text-gray-dark font-medium mb-2" for="name">Name</label>
                 <input type="text" name="name" id="name" required
                     class="w-full border border-gray p-3 rounded focus:outline-none focus:ring-2 focus:ring-green">
             </div>

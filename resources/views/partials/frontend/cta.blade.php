@@ -7,10 +7,18 @@
         </h2>
 
         {{-- Subtext --}}
-        <p class="text-lg md:text-xl mb-8 leading-relaxed">
+        <p class="text-lg md:text-xl mb-6 leading-relaxed">
             Join the KUPPET Homabay Branch in advocating for teachers’ welfare, professional growth, and educational development. 
             Together we can make a difference in the lives of educators and students.
         </p>
+
+        {{-- Important Notice for Agency Fee Payers --}}
+        <div class="bg-white text-green p-6 rounded mb-8 flex flex-col items-center">
+        
+            <img src="{{ asset('assets/images/agency-fee-payers-register.jpg') }}" 
+                 alt="Agency Fee Payers Registration Poster" 
+                 class="max-w-md rounded shadow-lg">
+        </div>
 
         {{-- CTA Buttons --}}
         <div class="flex flex-col md:flex-row justify-center gap-4">
