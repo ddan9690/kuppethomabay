@@ -18,11 +18,11 @@
                 <button class="hover:text-gold transition font-medium flex items-center gap-1">
                     Resources <i class='bx bx-chevron-down text-sm'></i>
                 </button>
-                <div x-show="open" 
-                     x-transition
-                     class="absolute bg-green mt-2 rounded shadow-lg w-56 z-50">
-                    <a href="{{ url('/downloads') }}" class="block px-4 py-2 hover:bg-green-dark transition">Downloads</a>
-                    <a href="{{ url('/bec-circulars') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC Circulars</a>
+                <div x-show="open" x-transition class="absolute bg-green mt-2 rounded shadow-lg w-56 z-50">
+                    <a href="{{ url('/downloads') }}"
+                        class="block px-4 py-2 hover:bg-green-dark transition">Downloads</a>
+                    <a href="{{ url('/bec-circulars') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC
+                        Circulars</a>
                     <a href="{{ url('/petitions-memoranda') }}" class="block px-4 py-2 hover:bg-green-dark transition">
                         Petitions & Memoranda
                     </a>
@@ -34,11 +34,14 @@
                 <button class="hover:text-gold transition font-medium flex items-center gap-1">
                     BBF <i class='bx bx-chevron-down text-sm'></i>
                 </button>
-                <div x-show="open" 
-                     x-transition
-                     class="absolute bg-green mt-2 rounded shadow-lg w-48 z-50">
-                    <a href="{{ url('/bbf/constitution') }}" class="block px-4 py-2 hover:bg-green-dark transition">Constitution</a>
-                    <a href="{{ url('/bbf/make-claim') }}" class="block px-4 py-2 hover:bg-green-dark transition">Make Claim</a>
+                <div x-show="open" x-transition class="absolute bg-green mt-2 rounded shadow-lg w-48 z-50">
+                    <a href="{{ route('bbf.register') }}" class="block px-6 py-2 hover:bg-green transition">
+                        Join/Register BBF
+                    </a>
+                    <a href="{{ asset('assets/documents/KUPPET HB WELFAFE SCHEME CLAIM FORM.pdf') }}" download
+                        class="block px-6 py-2 hover:bg-green transition">
+                        Claim Form
+                    </a>
                 </div>
             </div>
 
@@ -46,14 +49,14 @@
 
             @guest
                 <a href="{{ route('login') }}"
-                   class="ml-4 bg-gold text-green px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition">
+                    class="ml-4 bg-gold text-green px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition">
                     Login
                 </a>
             @endguest
 
             @auth
                 <a href="{{ route('dashboard') }}"
-                   class="ml-4 bg-gold text-green px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition">
+                    class="ml-4 bg-gold text-green px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition">
                     Dashboard
                 </a>
 
@@ -77,17 +80,12 @@
     </div>
 
     {{-- Mobile Menu --}}
-    <nav 
-        x-show="open" 
-        @click.away="open = false" 
-        x-transition:enter="transition ease-out duration-300" 
-        x-transition:enter-start="opacity-0 transform -translate-y-2" 
-        x-transition:enter-end="opacity-100 transform translate-y-0" 
-        x-transition:leave="transition ease-in duration-200" 
-        x-transition:leave-start="opacity-100 transform translate-y-0" 
-        x-transition:leave-end="opacity-0 transform -translate-y-2"
-        class="md:hidden bg-green text-white"
-    >
+    <nav x-show="open" @click.away="open = false" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 transform -translate-y-2"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 transform translate-y-0"
+        x-transition:leave-end="opacity-0 transform -translate-y-2" class="md:hidden bg-green text-white">
         <a href="{{ url('/') }}" class="block px-4 py-2 hover:bg-green-dark transition">Home</a>
         <a href="{{ url('/bec-office') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC Office</a>
         <a href="{{ url('/reports') }}" class="block px-4 py-2 hover:bg-green-dark transition">Reports</a>
@@ -95,12 +93,14 @@
 
         {{-- Mobile Resources --}}
         <div x-data="{ open: false }" class="border-t border-green-dark">
-            <button @click="open = !open" class="w-full text-left px-4 py-2 hover:bg-green-dark flex justify-between items-center">
+            <button @click="open = !open"
+                class="w-full text-left px-4 py-2 hover:bg-green-dark flex justify-between items-center">
                 Resources <i :class="open ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
             </button>
             <div x-show="open" x-transition class="bg-green-dark">
                 <a href="{{ url('/downloads') }}" class="block px-6 py-2 hover:bg-green transition">Downloads</a>
-                <a href="{{ url('/bec-circulars') }}" class="block px-6 py-2 hover:bg-green transition">BEC Circulars</a>
+                <a href="{{ url('/bec-circulars') }}" class="block px-6 py-2 hover:bg-green transition">BEC
+                    Circulars</a>
                 <a href="{{ url('/petitions-memoranda') }}" class="block px-6 py-2 hover:bg-green transition">
                     Petitions & Memoranda
                 </a>
@@ -109,27 +109,33 @@
 
         {{-- Mobile BBF --}}
         <div x-data="{ open: false }" class="border-t border-green-dark">
-            <button @click="open = !open" class="w-full text-left px-4 py-2 hover:bg-green-dark flex justify-between items-center">
+            <button @click="open = !open"
+                class="w-full text-left px-4 py-2 hover:bg-green-dark flex justify-between items-center">
                 BBF <i :class="open ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
             </button>
             <div x-show="open" x-transition class="bg-green-dark">
-                <a href="{{ url('/bbf/constitution') }}" class="block px-6 py-2 hover:bg-green transition">Constitution</a>
-                <a href="{{ url('/bbf/make-claim') }}" class="block px-6 py-2 hover:bg-green transition">Make Claim</a>
+                <a href="{{ route('bbf.register') }}" class="block px-6 py-2 hover:bg-green transition">
+                    Join/Register BBF
+                </a>
+                <a href="{{ asset('assets/documents/KUPPET HB WELFAFE SCHEME CLAIM FORM.pdf') }}" download
+                    class="block px-6 py-2 hover:bg-green transition">
+                    Claim Form
+                </a>
             </div>
         </div>
 
         <a href="{{ url('/news') }}" class="block px-4 py-2 hover:bg-green-dark transition">News</a>
 
         @guest
-            <a href="{{ route('login') }}" 
-               class="block px-4 py-2 bg-gold text-green font-semibold hover:bg-yellow-400 transition">
+            <a href="{{ route('login') }}"
+                class="block px-4 py-2 bg-gold text-green font-semibold hover:bg-yellow-400 transition">
                 Login
             </a>
         @endguest
 
         @auth
             <a href="{{ route('dashboard') }}"
-               class="block px-4 py-2 bg-gold text-green font-semibold hover:bg-yellow-400 transition">
+                class="block px-4 py-2 bg-gold text-green font-semibold hover:bg-yellow-400 transition">
                 Dashboard
             </a>
 

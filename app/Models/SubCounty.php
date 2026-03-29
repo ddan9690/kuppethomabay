@@ -16,8 +16,5 @@ class SubCounty extends Model
     ];
 
    
-    public function subCounty()
-    {
-        return $this->belongsTo(SubCounty::class);
-    }
+   
 }

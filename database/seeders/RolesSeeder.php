@@ -10,12 +10,42 @@ class RolesSeeder extends Seeder
 {
     public function run()
     {
-        // Create roles
-        $superAdmin = Role::firstOrCreate(['name' => 'super-admin']);
-        $executive = Role::firstOrCreate(['name' => 'executive']);
-        $official = Role::firstOrCreate(['name' => 'official']);
+        // -----------------------------
+        // Create Roles
+        // -----------------------------
+        $superAdmin      = Role::firstOrCreate(['name' => 'super-admin']);
+        $executive       = Role::firstOrCreate(['name' => 'executive']);
+        $official        = Role::firstOrCreate(['name' => 'official']);
+        $subCountyBbfRep = Role::firstOrCreate(['name' => 'subcounty-bbf-rep']);
+        $becBbf          = Role::firstOrCreate(['name' => 'bec-bbf']); // for BEC approval stage
 
-        // Assign permissions
+        // -----------------------------
+        // Create Permissions
+        // -----------------------------
+        // General permissions
+        Permission::firstOrCreate(['name' => 'manage-users']);
+        Permission::firstOrCreate(['name' => 'manage-events']);
+        Permission::firstOrCreate(['name' => 'view-reports']);
+        Permission::firstOrCreate(['name' => 'approve-reports']);
+        Permission::firstOrCreate(['name' => 'manage-members']);
+        Permission::firstOrCreate(['name' => 'submit-feedback']);
+        Permission::firstOrCreate(['name' => 'view-feedback']);
+
+        // BBF-specific permissions
+        Permission::firstOrCreate(['name' => 'submit-bbf-claim']);          
+        Permission::firstOrCreate(['name' => 'view-subcounty-claims']);     
+        Permission::firstOrCreate(['name' => 'approve-subcounty-claims']);  
+        Permission::firstOrCreate(['name' => 'view-all-subcounty-claims']); 
+        Permission::firstOrCreate(['name' => 'approve-bec-claims']);        
+        Permission::firstOrCreate(['name' => 'view-all-claims']);           
+        Permission::firstOrCreate(['name' => 'manage-subcounty-bbf-reps']); // add/edit/delete subcounty reps
+
+        // NEW: Approve BBF Membership
+        Permission::firstOrCreate(['name' => 'approve-bbf-membership']); // approve teachers who registered
+
+        // -----------------------------
+        // Assign Permissions to Roles
+        // -----------------------------
         $superAdmin->syncPermissions(Permission::all());
 
         $executive->syncPermissions([
@@ -24,14 +54,33 @@ class RolesSeeder extends Seeder
             'view-reports',
             'approve-reports',
             'manage-members',
+            'view-all-claims',            
+            'view-subcounty-claims',      
+            'approve-subcounty-claims',   
+            'approve-bec-claims',         
+            'manage-subcounty-bbf-reps',
+            'approve-bbf-membership',      // can approve BBF membership
         ]);
 
         $official->syncPermissions([
             'view-reports',
             'submit-feedback',
             'view-feedback',
+            'submit-bbf-claim',
         ]);
 
-        $this->command->info('Roles seeded and permissions assigned!');
+        $subCountyBbfRep->syncPermissions([
+            'view-subcounty-claims',      
+            'approve-subcounty-claims',   
+            'view-all-subcounty-claims',  
+        ]);
+
+        $becBbf->syncPermissions([
+            'view-subcounty-claims',      
+            'approve-bec-claims',         
+            'view-all-subcounty-claims',  
+        ]);
+
+        $this->command->info('Roles and BBF membership permissions seeded successfully!');
     }
 }

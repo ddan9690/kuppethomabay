@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgencyPayerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BbfMembershipController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PdfDownloadController;
 use App\Http\Controllers\SHAController;
@@ -19,13 +20,23 @@ Route::get('/bec-circulars', function () {
     return view('pages.frontend.circulars');
 })->name('circulars');
 
+Route::get('/agency-payer', [AgencyPayerController::class, 'create'])
+    ->name('agency_payer.create');
+
+Route::get('/bbf/register', [BbfMembershipController::class, 'create'])
+    ->name('bbf.register');
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.submit');
-    Route::get('/agency-payer', [AgencyPayerController::class, 'create'])
-        ->name('agency_payer.create');
+
     Route::post('/agency-payer-form', [AgencyPayerController::class, 'store'])
         ->name('agency_payer.store');
+    Route::get('/petitions-memoranda', function () {
+        return view('pages.frontend.memoranda-and-petitions');
+    })->name('petitions.memoranda');
+    Route::post('/bbf/register', [BbfMembershipController::class, 'store'])
+        ->name('bbf.register.store');
 });
 
 
