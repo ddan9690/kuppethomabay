@@ -20,6 +20,10 @@ Route::get('/bec-circulars', function () {
     return view('pages.frontend.circulars');
 })->name('circulars');
 
+Route::get('/petitions-memoranda', function () {
+    return view('pages.frontend.memoranda-and-petitions');
+})->name('petitions.memoranda');
+
 Route::get('/agency-payer', [AgencyPayerController::class, 'create'])
     ->name('agency_payer.create');
 
@@ -32,9 +36,7 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/agency-payer-form', [AgencyPayerController::class, 'store'])
         ->name('agency_payer.store');
-    Route::get('/petitions-memoranda', function () {
-        return view('pages.frontend.memoranda-and-petitions');
-    })->name('petitions.memoranda');
+
     Route::post('/bbf/register', [BbfMembershipController::class, 'store'])
         ->name('bbf.register.store');
 });
