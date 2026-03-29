@@ -8,7 +8,7 @@
     {{-- TailwindCSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- Alpine.js --}}
+    {{-- Alpine --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     {{-- Boxicons --}}
@@ -19,47 +19,55 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-    {{-- Toastr CSS --}}
+    {{-- Toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     @stack('styles')
 </head>
-<body class="bg-gray-light flex h-screen font-sans overflow-hidden" x-data="{ sidebarOpen: false }">
 
-    {{-- Sidebar --}}
-    @include('partials.backend.sidebar')
+<body class="bg-gray-100 font-sans" x-data="{ sidebarOpen: false }">
 
-    <div class="flex-1 flex flex-col overflow-hidden">
-        
-        {{-- Navigation / Topbar --}}
-        @include('partials.backend.navigation')
+    <div class="flex min-h-screen">
 
-        {{-- Main Content --}}
-        <main class="flex-1 overflow-auto p-6 bg-gray-light">
-            @yield('content')
-        </main>
+        {{-- ✅ Sidebar --}}
+        @include('partials.backend.sidebar')
 
-        {{-- Footer --}}
-        @include('partials.backend.footer')
+        {{-- ✅ Main Content --}}
+        <div class="flex-1 flex flex-col">
+
+            {{-- Topbar --}}
+            @include('partials.backend.navigation')
+
+            {{-- Page Content --}}
+            <main class="flex-1 p-6 overflow-auto">
+                @yield('content')
+            </main>
+
+            {{-- Footer --}}
+            @include('partials.backend.footer')
+
+        </div>
+
     </div>
 
-    {{-- Toastr JS --}}
+    {{-- Toastr --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @stack('scripts')
+
     <script>
-        // Initialize DataTables
         document.addEventListener('DOMContentLoaded', function () {
             $('.datatable').DataTable();
         });
 
-        // Example Toastr usage
         @if(session('success'))
             toastr.success("{{ session('success') }}");
         @endif
+
         @if(session('error'))
             toastr.error("{{ session('error') }}");
         @endif
     </script>
+
 </body>
 </html>
