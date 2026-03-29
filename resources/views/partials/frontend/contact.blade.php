@@ -48,7 +48,7 @@
         {{-- SHA Medical Cover Button at the bottom --}}
         <div class="text-center mt-10">
             <a href="#" 
-               class="inline-block bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded font-semibold shadow-lg transition">
+               class="inline-block bg-red hover:bg-gold-dark text-white px-6 py-3 rounded font-semibold shadow-lg transition">
                 Facing Mwalimu SHA Medical Cover Challenges? Click here to let Us know
             </a>
         </div>
