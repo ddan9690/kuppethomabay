@@ -9,7 +9,23 @@
         {{-- News Items Grid --}}
         <div class="grid gap-8 md:grid-cols-2">
 
-            {{-- News Item 1 --}}
+            {{-- News Item 1: Homa Bay Junior Schools Games --}}
+            <div class="bg-white rounded shadow hover:shadow-lg transition overflow-hidden">
+                <img src="/assets/images/kuppet-at-homabay-county-junior-schools-games.jpg" 
+                     alt="KUPPET Homa Bay at Junior Schools Games" 
+                     class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-green mb-2">
+                        KUPPET at Homa Bay Junior Schools Games
+                    </h3>
+                    <p class="text-gray-dark mb-4">
+                        KUPPET Homa Bay BEC members today graced the Homa Bay County Junior Secondary Schools Games held at Omboga Junior Secondary in Rachuonyo North.
+                    </p>
+                    <a href="#" class="text-gold hover:text-gold-dark font-semibold transition">Read More →</a>
+                </div>
+            </div>
+
+            {{-- News Item 2 --}}
             <div class="bg-white rounded shadow hover:shadow-lg transition overflow-hidden">
                 <img src="/assets/images/kuppet-homabay-visits-sha-officer-homabay-referral-hospital.jpg" 
                      alt="BEC consultative meeting with Homabay referral hospital" 
@@ -25,7 +41,7 @@
                 </div>
             </div>
 
-            {{-- News Item 2 --}}
+            {{-- News Item 3 --}}
             <div class="bg-white rounded shadow hover:shadow-lg transition overflow-hidden">
                 <img src="/assets/images/kuppet-homabay-bec-assessment-services-st-camillus-hospital-sori.jpg" 
                      alt="KUPPET Homa Bay BEC assessment at St Camillus Hospital Sori" 

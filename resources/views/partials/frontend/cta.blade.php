@@ -14,7 +14,6 @@
 
         {{-- Important Notice for Agency Fee Payers --}}
         <div class="bg-white text-green p-6 rounded mb-8 flex flex-col items-center">
-        
             <img src="{{ asset('assets/images/agency-fee-payers-register.jpg') }}" 
                  alt="Agency Fee Payers Registration Poster" 
                  class="max-w-md rounded shadow-lg">
@@ -29,6 +28,11 @@
             <a href="{{ url('/about') }}"
                class="bg-white hover:bg-gray-light text-green px-6 py-3 rounded font-semibold transition">
                 Learn More
+            </a>
+            {{-- New Agency Fee Payer Link --}}
+            <a href="{{ route('agency_payer.create') }}"
+               class="bg-green-dark hover:bg-green text-white px-6 py-3 rounded font-semibold transition">
+                Are You Still an Agency Fee Payer? Click Here
             </a>
         </div>
 

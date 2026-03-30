@@ -4,6 +4,7 @@ use App\Http\Controllers\AgencyPayerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BbfMembershipController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PdfDownloadController;
 use App\Http\Controllers\SHAController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::get('/agency-payer', [AgencyPayerController::class, 'create'])
 
 Route::get('/bbf/register', [BbfMembershipController::class, 'create'])
     ->name('bbf.register');
+
+Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
