@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,15 +23,66 @@
     {{-- Toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    {{-- Google Analytics --}}
+    @stack('styles')
+
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCKK65BC2Z"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'G-LCKK65BC2Z');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LCKK65BC2Z');
+    </script>
+</head>
+
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col" x-data="{ sidebarOpen: false }">
+
+    <div class="flex min-h-screen">
+
+        {{-- ✅ Sidebar --}}
+        @include('partials.backend.sidebar')
+
+        {{-- ✅ Main Content --}}
+        <div class="flex-1 flex flex-col">
+
+            {{-- Topbar --}}
+            @include('partials.backend.navigation')
+
+            {{-- Page Content --}}
+            <main class="flex-1 p-6 overflow-auto">
+                @yield('content')
+            </main>
+
+            {{-- Footer --}}
+            @include('partials.backend.footer')
+
+        </div>
+
+    </div>
+
+    {{-- Toastr --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    @stack('scripts')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('.datatable').DataTable();
+        });
+
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
     </script>
 
-    @stack('styles')
-</head>
+</body>
+
+</html>
