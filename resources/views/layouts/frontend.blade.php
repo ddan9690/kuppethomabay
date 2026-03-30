@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,10 +28,8 @@
 
     {{-- FAVICONS --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon_io/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('assets/images/favicon_io/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/images/favicon_io/site.webmanifest') }}">
     <link rel="icon" href="{{ asset('assets/images/favicon_io/favicon.ico') }}" type="image/x-icon">
 
@@ -66,29 +61,14 @@
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-</head>
-
-<body class="bg-gray-light text-gray-dark font-sans">
-
-    {{-- Header --}}
-    @include('partials.frontend.header')
-
-    {{-- Main Content --}}
-    <main class="min-h-screen">
-        @yield('content')
-    </main>
-
-    {{-- Footer --}}
-    @include('partials.frontend.footer')
-
-    {{-- Initialize DataTables --}}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCKK65BC2Z"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tables = document.querySelectorAll('table.data-table');
-            tables.forEach(table => $(table).DataTable());
-        });
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LCKK65BC2Z');
     </script>
 
-</body>
-
-</html>
+</head>

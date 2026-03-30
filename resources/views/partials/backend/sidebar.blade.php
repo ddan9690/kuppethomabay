@@ -1,10 +1,7 @@
 {{-- Sidebar Wrapper --}}
 <div>
     {{-- Mobile Overlay --}}
-    <div 
-        x-show="sidebarOpen" 
-        x-transition.opacity
-        class="fixed inset-0 bg-black/50 z-40 md:hidden"
+    <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 bg-black/50 z-40 md:hidden"
         @click="sidebarOpen = false">
     </div>
 
@@ -17,9 +14,7 @@
 
         {{-- Desktop always visible --}}
         md:translate-x-0 md:static md:inset-0"
-        
-        :class="sidebarOpen ? 'translate-x-0' : ''"
-    >
+        :class="sidebarOpen ? 'translate-x-0' : ''">
 
         {{-- Mobile Header --}}
         <div class="flex justify-between items-center p-4 md:hidden border-b border-green-dark">
@@ -49,14 +44,18 @@
                 <span>Agency Payers</span>
             </a>
 
-            <a href="#"
-                class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
+            <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
                 <i class='bx bx-group text-xl'></i>
                 <span>Users</span>
             </a>
 
-            <a href="#"
+            <a href="{{ route('sub_county_bbf_reps.index') }}"
                 class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
+                <i class='bx bx-user-check text-xl'></i>
+                <span>Sub-County BBF Reps</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
                 <i class='bx bx-file text-xl'></i>
                 <span>Reports</span>
             </a>

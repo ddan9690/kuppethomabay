@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PdfDownloadController;
 use App\Http\Controllers\SHAController;
+use App\Http\Controllers\SubCountyBbfRepController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -56,4 +57,13 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         ->name('agency_payer.index');
     Route::get('/agency-payers/pdf', [PdfDownloadController::class, 'agencyPayers'])
         ->name('agency_payer.pdf');
+
+    Route::prefix('sub-county-bbf-reps')->name('sub_county_bbf_reps.')->group(function () {
+        Route::get('/', [SubCountyBbfRepController::class, 'index'])->name('index');
+        Route::get('/add', [SubCountyBbfRepController::class, 'add'])->name('add');
+        Route::post('/store', [SubCountyBbfRepController::class, 'store'])->name('store');
+        Route::get('/{subCountyBbfRep}', [SubCountyBbfRepController::class, 'show'])->name('show');
+        Route::put('/{subCountyBbfRep}/update', [SubCountyBbfRepController::class, 'update'])->name('update');
+        Route::delete('/{subCountyBbfRep}/delete', [SubCountyBbfRepController::class, 'delete'])->name('delete');
+    });
 });
