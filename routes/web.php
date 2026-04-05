@@ -5,14 +5,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BbfMembershipController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PdfDownloadController;
 use App\Http\Controllers\SHAController;
 use App\Http\Controllers\SubCountyBbfRepController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.frontend.home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/downloads', function () {
     return view('pages.frontend.downloads');
@@ -33,6 +33,7 @@ Route::get('/bbf/register', [BbfMembershipController::class, 'create'])
     ->name('bbf.register');
 
 Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -43,6 +44,8 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/bbf/register', [BbfMembershipController::class, 'store'])
         ->name('bbf.register.store');
+
+    
 });
 
 
@@ -66,4 +69,24 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::put('/{subCountyBbfRep}/update', [SubCountyBbfRepController::class, 'update'])->name('update');
         Route::delete('/{subCountyBbfRep}/delete', [SubCountyBbfRepController::class, 'delete'])->name('delete');
     });
+
+    Route::get('/admin/news', [NewsController::class, 'index'])
+        ->name('admin.news.index');
+
+    Route::get('/news/add', [NewsController::class, 'create'])
+        ->name('admin.news.create');
+
+    Route::post('/admin/news', [NewsController::class, 'store'])
+        ->name('admin.news.store');
+
+    Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])
+        ->name('admin.news.edit');
+
+    // Update the news
+    Route::put('/admin/news/{news}', [NewsController::class, 'update'])
+        ->name('admin.news.update');
+
+    // Optional: delete (already in your index blade)
+    Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])
+        ->name('admin.news.destroy');
 });

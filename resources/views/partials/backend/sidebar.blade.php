@@ -55,6 +55,13 @@
                 <span>Sub-County BBF Reps</span>
             </a>
 
+            <a href="{{ route('admin.news.index') }}"
+                class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
+                <i class='bx bx-news text-xl'></i>
+                <span>Manage News</span>
+            </a>
+
+
             <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
                 <i class='bx bx-file text-xl'></i>
                 <span>Reports</span>
