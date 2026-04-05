@@ -65,11 +65,13 @@
                             <td class="px-4 py-3">
                                 <div class="flex justify-center items-center gap-2">
 
+                                    {{-- Edit --}}
                                     <a href="{{ route('admin.news.edit', $news) }}"
                                        class="bg-blue text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
                                         Edit
                                     </a>
 
+                                    {{-- Delete --}}
                                     <form action="{{ route('admin.news.destroy', $news) }}" 
                                           method="POST"
                                           onsubmit="return confirm('Delete this news article?');">
@@ -81,6 +83,13 @@
                                             Delete
                                         </button>
                                     </form>
+
+                                    {{-- Copy Link --}}
+                                    <button type="button"
+                                            onclick="copyNewsLink('{{ url(route('news.show', $news->slug, false)) }}')"
+                                            class="bg-gray text-white px-3 py-1 rounded hover:bg-gray-800 text-sm">
+                                        Copy Link
+                                    </button>
 
                                 </div>
                             </td>
@@ -111,5 +120,15 @@
             responsive: true
         });
     });
+
+    function copyNewsLink(link) {
+        navigator.clipboard.writeText(link)
+            .then(() => {
+                alert('News link copied to clipboard!');
+            })
+            .catch(err => {
+                console.error('Failed to copy link: ', err);
+            });
+    }
 </script>
 @endpush
