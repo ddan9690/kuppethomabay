@@ -33,6 +33,7 @@ Route::get('/bbf/register', [BbfMembershipController::class, 'create'])
     ->name('bbf.register');
 
 Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
+
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::middleware('guest')->group(function () {

@@ -41,6 +41,14 @@
                 </a>
             </li>
 
+              <li class="flex justify-between items-center border-b pb-2">
+                <span>KUPPET-Homa-Bay-Branch-Elected-Leaders-List-2026-2031</span>
+                <a href="{{ asset('assets/documents/KUPPET-Homa-Bay-Branch-Elected-Leaders-List-2026-2031.pdf') }}" download
+                   class="text-green hover:underline font-medium">
+                    Download
+                </a>
+            </li>
+
         </ul>
 
     </div>
