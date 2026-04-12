@@ -50,6 +50,8 @@
     {{-- DataTables CSS --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
     {{-- Alpine.js --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -66,6 +68,10 @@
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCKK65BC2Z"></script>
     <script>
@@ -77,6 +83,8 @@
         gtag('js', new Date());
 
         gtag('config', 'G-LCKK65BC2Z');
+
+
     </script>
 </head>
 
@@ -99,6 +107,20 @@
             const tables = document.querySelectorAll('table.data-table');
             tables.forEach(table => $(table).DataTable());
         });
+
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init({
+                duration: 900,
+                once: true,
+                offset: 120,
+                easing: 'ease-in-out'
+            });
+        });
+
+         document.addEventListener("DOMContentLoaded", function () {
+        var rellax = new Rellax('.rellax');
+    });
     </script>
 
 </body>

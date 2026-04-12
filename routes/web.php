@@ -32,6 +32,10 @@ Route::get('/agency-payer', [AgencyPayerController::class, 'create'])
 Route::get('/bbf/register', [BbfMembershipController::class, 'create'])
     ->name('bbf.register');
 
+Route::get('/bbf/comparison-by-laws-2021-2026-vs-2026-2031', function () {
+    return view('pages.frontend.welfare-reform-brief');
+})->name('bbf.by-laws.comparison');
+
 Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
 
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
@@ -45,8 +49,6 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/bbf/register', [BbfMembershipController::class, 'store'])
         ->name('bbf.register.store');
-
-    
 });
 
 
