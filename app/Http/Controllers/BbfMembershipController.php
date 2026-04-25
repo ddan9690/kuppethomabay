@@ -98,4 +98,40 @@ class BbfMembershipController extends Controller
 
         return redirect()->back()->with('success', 'BBF Membership registered successfully!');
     }
+
+    public function applications()
+    {
+        $applications = BbfMembership::with('subCounty')
+            ->orderBy('created_at', 'asc') // earliest first (clear intent)
+            ->paginate(20);
+
+        return view('pages.backend.bbf.applications', compact('applications'));
+    }
+
+    public function show($id)
+    {
+        $member = BbfMembership::with('subCounty')->findOrFail($id);
+        $member->spouses = json_decode($member->spouses, true) ?? [];
+        $member->children = json_decode($member->children, true) ?? [];
+
+        return view('pages.backend.bbf.show', compact('member'));
+    }
+
+    public function approve($id)
+    {
+        $member = BbfMembership::findOrFail($id);
+        $member->status = 'Approved';
+        $member->save();
+
+        return response()->json(['message' => 'Application approved successfully']);
+    }
+
+    public function reject($id)
+    {
+        $member = BbfMembership::findOrFail($id);
+        $member->status = 'Rejected';
+        $member->save();
+
+        return response()->json(['message' => 'Application rejected']);
+    }
 }

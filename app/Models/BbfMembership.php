@@ -8,7 +8,7 @@ class BbfMembership extends Model
 {
 
     protected $table = 'bbf_memberships';
-    
+
     protected $fillable = [
         'full_name',
         'tsc_number',
@@ -46,4 +46,9 @@ class BbfMembership extends Model
         'children' => 'array',
         'approved_at' => 'datetime',
     ];
+
+   public function subCounty()
+    {
+        return $this->belongsTo(SubCounty::class, 'sub_county_id');
+    }
 }

@@ -1,10 +1,7 @@
 <div x-data="{ bbfOpen: false }">
 
     {{-- Overlay --}}
-    <div
-        x-show="sidebarOpen"
-        x-transition.opacity
-        class="fixed inset-0 bg-black/50 z-40 md:hidden"
+    <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 bg-black/50 z-40 md:hidden"
         @click="sidebarOpen = false">
     </div>
 
@@ -31,7 +28,7 @@
         {{-- 🔥 QUICK ACCESS HOME (NEW) --}}
         <div class="px-4 pt-3">
             <a href="{{ url('/') }}"
-               class="flex items-center gap-3 p-2 rounded bg-green-dark hover:bg-green-700 transition">
+                class="flex items-center gap-3 p-2 rounded bg-green-dark hover:bg-green-700 transition">
                 <i class='bx bx-globe'></i>
                 <span>Home</span>
             </a>
@@ -40,20 +37,17 @@
         {{-- Nav --}}
         <nav class="flex-1 px-4 py-4 space-y-2 overflow-y-auto">
 
-            <a href="{{ route('dashboard') }}"
-               class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
+            <a href="{{ route('dashboard') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
                 <i class='bx bx-home'></i> Dashboard
             </a>
 
-            <a href="{{ route('agency_payer.index') }}"
-               class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
+            <a href="{{ route('agency_payer.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
                 <i class='bx bx-user'></i> Agency Payers
             </a>
 
             {{-- BBF --}}
             <div>
-                <button @click="bbfOpen = !bbfOpen"
-                        class="w-full flex justify-between p-2 rounded hover:bg-green-dark">
+                <button @click="bbfOpen = !bbfOpen" class="w-full flex justify-between p-2 rounded hover:bg-green-dark">
 
                     <span class="flex items-center gap-3">
                         <i class='bx bx-folder'></i> BBF
@@ -64,12 +58,11 @@
 
                 <div x-show="bbfOpen" x-transition class="ml-6 mt-2 space-y-2">
 
-                    <a href="{{ route('sub_county_bbf_reps.index') }}"
-                       class="block p-2 hover:bg-green-dark rounded">
+                    <a href="{{ route('sub_county_bbf_reps.index') }}" class="block p-2 hover:bg-green-dark rounded">
                         Sub-County Reps
                     </a>
 
-                    <a href="#" class="block p-2 hover:bg-green-dark rounded">
+                    <a href="{{ route('bbf.applications.index') }}" class="block p-2 hover:bg-green-dark rounded">
                         Membership Applications
                     </a>
 
@@ -80,8 +73,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('admin.news.index') }}"
-               class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
+            <a href="{{ route('admin.news.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
                 <i class='bx bx-news'></i> Manage News
             </a>
 

@@ -15,6 +15,10 @@ class SubCounty extends Model
         'agency_fee_active',
     ];
 
+      public function members()
+    {
+        return $this->hasMany(BbfMembership::class, 'sub_county_id');
+    }
    
    
 }

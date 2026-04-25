@@ -73,6 +73,26 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::delete('/{subCountyBbfRep}/delete', [SubCountyBbfRepController::class, 'delete'])->name('delete');
     });
 
+    Route::prefix('bbf')->group(function () {
+        Route::get('/applications', [BbfMembershipController::class, 'applications'])
+            ->name('bbf.applications.index');
+
+        Route::get('/bbf/applications/pending/pdf', [PdfDownloadController::class, 'bbfPendingApplications'])
+            ->name('bbf.applications.pending.pdf');
+            
+        Route::get('/bbf/members/{id}', [BbfMembershipController::class, 'show'])
+            ->name('bbf.members.show');
+
+        Route::get('/bbf/members/{id}', [BbfMembershipController::class, 'show'])
+            ->name('bbf.members.show');
+
+        Route::post('/bbf/members/{id}/approve', [BbfMembershipController::class, 'approve'])
+            ->name('bbf.members.approve');
+
+        Route::post('/bbf/members/{id}/reject', [BbfMembershipController::class, 'reject'])
+            ->name('bbf.members.reject');
+    });
+
     Route::get('/admin/news', [NewsController::class, 'index'])
         ->name('admin.news.index');
 
