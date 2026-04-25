@@ -192,7 +192,7 @@
             {{-- NAV --}}
             <div class="flex justify-between mt-6">
                 <button type="button" @click="prev()" x-show="step > 1"
-                    class="bg-gray-500 text-white px-4 py-2 rounded">
+                    class="bg-gray-dark text-white px-4 py-2 rounded">
                     Previous
                 </button>
 
