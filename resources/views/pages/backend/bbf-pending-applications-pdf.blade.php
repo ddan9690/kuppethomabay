@@ -5,48 +5,55 @@
     <title>BBF Membership Applications</title>
 
     <style>
+        @page {
+            size: A4 landscape;
+            margin: 15px;
+        }
+
         body {
             font-family: DejaVu Sans, sans-serif;
-            font-size: 12px;
-            line-height: 1.4;
+            font-size: 11px;
             color: #000;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .header img {
-            width: 90px;
+            width: 80px;
             height: auto;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         h2 {
-            font-size: 18px;
+            font-size: 16px;
             margin: 0;
         }
 
         .subtitle {
-            font-size: 13px;
-            margin-top: 5px;
+            font-size: 12px;
+            margin-top: 3px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 10px;
+            table-layout: fixed;
         }
 
         th, td {
             border: 1px solid #000;
-            padding: 6px;
-            text-align: left;
+            padding: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         th {
-            background-color: #008C45; /* KUPPET GREEN */
+            background-color: #008C45;
             color: white;
         }
 
@@ -55,10 +62,29 @@
         }
 
         .footer {
-            margin-top: 20px;
+            margin-top: 15px;
             font-size: 10px;
             text-align: center;
         }
+
+        .uppercase-text {
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           COLUMN WIDTH CONTROL
+        ========================== */
+
+        .col-no { width: 3%; }
+        .col-name { width: 12%; }
+        .col-tsc { width: 8%; }
+        .col-school { width: 14%; }
+        .col-zone { width: 10%; }
+        .col-subcounty { width: 12%; }
+        .col-phone { width: 10%; }
+        .col-category { width: 9%; }
+        .col-status { width: 8%; }
+        .col-date { width: 14%; }
     </style>
 </head>
 
@@ -79,32 +105,74 @@
     <table>
         <thead>
             <tr>
-                <th>#</th>
-                <th>Full Name</th>
-                <th>TSC No</th>
-                <th>Sub County</th>
-                <th>Phone</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th>Submitted On</th>
+                <th class="col-no">#</th>
+                <th class="col-name">Full Name</th>
+                <th class="col-tsc">TSC No</th>
+                <th class="col-school">School</th>
+                <th class="col-zone">Zone</th>
+                <th class="col-subcounty">Sub County</th>
+                <th class="col-phone">Phone</th>
+                <th class="col-category">Category</th>
+                <th class="col-status">Status</th>
+                <th class="col-date">Submitted On</th>
             </tr>
         </thead>
 
         <tbody>
             @forelse($applications as $index => $app)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $app->full_name }}</td>
-                    <td>{{ $app->tsc_number }}</td>
-                    <td>{{ $app->subCounty->name ?? '-' }}</td>
-                    <td>{{ $app->phone_number }}</td>
-                    <td>{{ $app->category }}</td>
-                    <td>{{ $app->status }}</td>
-                    <td>{{ $app->created_at->format('d M Y') }}</td>
+
+                    <td class="col-no">{{ $index + 1 }}</td>
+
+                    {{-- NAME --}}
+                    <td class="col-name uppercase-text">
+                        {{ $app->full_name }}
+                    </td>
+
+                    {{-- TSC --}}
+                    <td class="col-tsc">
+                        {{ $app->tsc_number }}
+                    </td>
+
+                    {{-- SCHOOL --}}
+                    <td class="col-school">
+                        {{ $app->school_name }}
+                    </td>
+
+                    {{-- ZONE --}}
+                    <td class="col-zone">
+                        {{ $app->zone }}
+                    </td>
+
+                    {{-- SUB COUNTY --}}
+                    <td class="col-subcounty">
+                        {{ $app->subCounty->name ?? '-' }}
+                    </td>
+
+                    {{-- PHONE --}}
+                    <td class="col-phone">
+                        {{ $app->phone_number }}
+                    </td>
+
+                    {{-- CATEGORY --}}
+                    <td class="col-category uppercase-text">
+                        {{ $app->category }}
+                    </td>
+
+                    {{-- STATUS --}}
+                    <td class="col-status">
+                        {{ $app->status }}
+                    </td>
+
+                    {{-- DATE --}}
+                    <td class="col-date">
+                        {{ $app->created_at->format('d M Y') }}
+                    </td>
+
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" style="text-align:center;">
+                    <td colspan="10" style="text-align:center;">
                         No applications found
                     </td>
                 </tr>

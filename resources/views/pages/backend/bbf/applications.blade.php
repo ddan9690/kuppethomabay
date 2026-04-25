@@ -15,15 +15,15 @@
 
             {{-- DOWNLOAD PDF BUTTON --}}
             <a href="{{ route('bbf.applications.pending.pdf') }}"
-               class="bg-green text-white px-4 py-2 rounded-lg shadow hover:bg-green-dark transition">
+               class="bg-green text-white px-5 py-2 rounded-lg shadow hover:bg-green-dark transition font-semibold">
 
                 Download PDF
             </a>
 
         </div>
 
-        {{-- TABLE --}}
-        <div class="overflow-x-auto bg-white shadow rounded-lg">
+        {{-- TABLE WRAPPER --}}
+        <div class="overflow-x-auto bg-white shadow rounded-lg border border-gray-light">
 
             <table class="min-w-full text-sm text-left">
 
@@ -41,14 +41,14 @@
                 </thead>
 
                 {{-- BODY --}}
-                <tbody class="divide-y">
+                <tbody class="divide-y divide-gray-light">
 
                     @forelse($applications as $app)
 
-                        <tr class="hover:bg-gray-light">
+                        <tr class="hover:bg-gray-light transition">
 
                             {{-- Applicant --}}
-                            <td class="p-3 font-medium text-gray-dark">
+                            <td class="p-3 font-semibold text-gray-dark uppercase">
                                 {{ $app->full_name }}
                             </td>
 
@@ -92,7 +92,7 @@
                             {{-- ACTION --}}
                             <td class="p-3 text-right">
                                 <a href="{{ route('bbf.members.show', $app->id) }}"
-                                   class="text-green font-semibold hover:underline">
+                                   class="text-green font-semibold hover:text-green-dark transition">
                                     View
                                 </a>
                             </td>
