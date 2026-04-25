@@ -21,7 +21,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('images/kupet-homabay-logo.png') }}">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', 'KUPPET Homabay Branch')">
@@ -83,8 +83,6 @@
         gtag('js', new Date());
 
         gtag('config', 'G-LCKK65BC2Z');
-
-
     </script>
 </head>
 
@@ -108,7 +106,7 @@
             tables.forEach(table => $(table).DataTable());
         });
 
-        
+
         document.addEventListener("DOMContentLoaded", function() {
             AOS.init({
                 duration: 900,
@@ -118,9 +116,9 @@
             });
         });
 
-         document.addEventListener("DOMContentLoaded", function () {
-        var rellax = new Rellax('.rellax');
-    });
+        document.addEventListener("DOMContentLoaded", function() {
+            var rellax = new Rellax('.rellax');
+        });
     </script>
 
 </body>

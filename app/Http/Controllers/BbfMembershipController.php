@@ -7,6 +7,7 @@ use App\Models\SubCounty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class BbfMembershipController extends Controller
 {
@@ -49,60 +50,83 @@ class BbfMembershipController extends Controller
             'mother_status' => 'nullable|in:Alive,Deceased',
             'mother_id' => 'nullable|string|max:20',
             'spouses' => 'nullable|array|max:2',
-            'spouses.*.full_name' => 'nullable|string|max:255',
-            'spouses.*.id_number' => 'nullable|string|max:50',
-            'spouses.*.phone_number' => 'nullable|string|max:20',
             'children' => 'nullable|array|max:7',
-            'children.*.full_name' => 'nullable|string|max:255',
-            'children.*.dob' => 'nullable|date',
-            'children.*.birth_cert_no' => 'nullable|string|max:50',
         ];
 
-        // Custom messages
         $messages = [
-            'tsc_number.unique' => 'A membership with this TSC Number already exists. 
-        If this is your TSC Number and you believe this is an error, please contact the BBF office.',
+            'tsc_number.unique' => 'A membership with this TSC Number already exists.',
         ];
 
-        $validated = $request->validate($rules, $messages);
+        // ✅ Manual validator (IMPORTANT for JSON responses)
+        $validator = Validator::make($request->all(), $rules, $messages);
 
-        // Convert spouse/children arrays to JSON only if they have at least one valid entry
+        // ❌ Return structured validation errors for AJAX
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $validated = $validator->validated();
+
+        // ✅ Clean spouses
         $spouses = null;
-        if ($request->spouses) {
-            $filteredSpouses = array_filter($request->spouses, function ($sp) {
-                return !empty($sp['full_name'] ?? '') || !empty($sp['id_number'] ?? '') || !empty($sp['phone_number'] ?? '');
+        if ($request->filled('spouses')) {
+
+            $spousesData = is_string($request->spouses)
+                ? json_decode($request->spouses, true)
+                : $request->spouses;
+
+            $filteredSpouses = array_filter($spousesData ?? [], function ($sp) {
+                return !empty($sp['full_name'])
+                    || !empty($sp['id_number'])
+                    || !empty($sp['phone_number']);
             });
-            if ($filteredSpouses) {
+
+            if (!empty($filteredSpouses)) {
                 $spouses = json_encode(array_values($filteredSpouses));
             }
         }
 
+        // ✅ Clean children
         $children = null;
-        if ($request->children) {
-            $filteredChildren = array_filter($request->children, function ($ch) {
-                return !empty($ch['full_name'] ?? '') || !empty($ch['dob'] ?? '') || !empty($ch['birth_cert_no'] ?? '');
+        if ($request->filled('children')) {
+
+            $childrenData = is_string($request->children)
+                ? json_decode($request->children, true)
+                : $request->children;
+
+            $filteredChildren = array_filter($childrenData ?? [], function ($ch) {
+                return !empty($ch['full_name'])
+                    || !empty($ch['dob'])
+                    || !empty($ch['birth_cert_no']);
             });
-            if ($filteredChildren) {
+
+            if (!empty($filteredChildren)) {
                 $children = json_encode(array_values($filteredChildren));
             }
         }
 
-        // Create the BBF membership
-        BbfMembership::create(array_merge(
-            $request->except(['spouses', 'children']),
+        // ✅ Save record
+        $membership = BbfMembership::create(array_merge(
+            $validated,
             [
                 'spouses' => $spouses,
                 'children' => $children,
             ]
         ));
 
-        return redirect()->back()->with('success', 'BBF Membership registered successfully!');
+        // ✅ Success response (clean + user friendly)
+        return response()->json([
+            'message' => "Dear {$membership->full_name}, your application for KUPPET Homa Bay BBF membership has been received successfully. The office is currently working on it and you will be contacted soon. Thank you."
+        ], 200);
     }
 
     public function applications()
     {
         $applications = BbfMembership::with('subCounty')
-            ->orderBy('created_at', 'asc') // earliest first (clear intent)
+            ->orderBy('created_at', 'asc')
             ->paginate(20);
 
         return view('pages.backend.bbf.applications', compact('applications'));
