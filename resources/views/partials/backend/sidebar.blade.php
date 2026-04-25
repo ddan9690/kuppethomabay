@@ -1,5 +1,6 @@
 {{-- Sidebar Wrapper --}}
-<div>
+<div x-data="{ sidebarOpen: false, bbfOpen: false }">
+    
     {{-- Mobile Overlay --}}
     <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 bg-black/50 z-40 md:hidden"
         @click="sidebarOpen = false">
@@ -8,11 +9,7 @@
     {{-- Sidebar --}}
     <aside
         class="fixed inset-y-0 left-0 z-50 w-64 bg-green text-white transform transition-transform duration-300 flex flex-col
-
-        {{-- Mobile default --}}
         -translate-x-full
-
-        {{-- Desktop always visible --}}
         md:translate-x-0 md:static md:inset-0"
         :class="sidebarOpen ? 'translate-x-0' : ''">
 
@@ -44,16 +41,39 @@
                 <span>Agency Payers</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
-                <i class='bx bx-group text-xl'></i>
-                <span>Users</span>
-            </a>
+            {{-- BBF Dropdown --}}
+            <div>
+                <button @click="bbfOpen = !bbfOpen"
+                    class="w-full flex items-center justify-between p-2 rounded hover:bg-green-dark transition">
+                    
+                    <div class="flex items-center gap-3">
+                        <i class='bx bx-folder text-xl'></i>
+                        <span>BBF</span>
+                    </div>
 
-            <a href="{{ route('sub_county_bbf_reps.index') }}"
-                class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
-                <i class='bx bx-user-check text-xl'></i>
-                <span>Sub-County BBF Reps</span>
-            </a>
+                    <i :class="bbfOpen ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
+                </button>
+
+                {{-- Dropdown Items --}}
+                <div x-show="bbfOpen" x-transition class="ml-8 mt-2 space-y-2">
+
+                    <a href="{{ route('sub_county_bbf_reps.index') }}"
+                        class="block p-2 rounded hover:bg-green-dark transition">
+                        Sub-County Reps
+                    </a>
+
+                    <a href=""
+                        class="block p-2 rounded hover:bg-green-dark transition">
+                        Membership Applications
+                    </a>
+
+                    <a href=""
+                        class="block p-2 rounded hover:bg-green-dark transition">
+                        Claims
+                    </a>
+
+                </div>
+            </div>
 
             <a href="{{ route('admin.news.index') }}"
                 class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
@@ -61,8 +81,8 @@
                 <span>Manage News</span>
             </a>
 
-
-            <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
+            <a href="#"
+                class="flex items-center gap-3 p-2 rounded hover:bg-green-dark transition">
                 <i class='bx bx-file text-xl'></i>
                 <span>Reports</span>
             </a>
