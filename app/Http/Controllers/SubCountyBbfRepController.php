@@ -2,63 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SubCountyBbfRep;
-use App\Models\User;
 use App\Models\SubCounty;
+use App\Services\SubCountyBbfRepService;
 use Illuminate\Http\Request;
 
 class SubCountyBbfRepController extends Controller
 {
+    protected $service;
+
+    public function __construct(SubCountyBbfRepService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
-        $reps = SubCountyBbfRep::with(['user', 'subCounty'])->paginate(10);
+        $reps = $this->service->getActiveReps();
+
         return view('pages.backend.sub-county-reps.index', compact('reps'));
     }
 
     public function add()
     {
-        $users = User::all(); // Users available to appoint
+        $users = $this->service->getAvailableUsers();
         $subCounties = SubCounty::all();
+
         return view('pages.backend.sub-county-reps.add', compact('users', 'subCounties'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id|unique:sub_county_bbf_reps,user_id',
+            'user_id' => 'required|exists:users,id',
             'sub_county_id' => 'required|exists:sub_counties,id',
-            
+            'level' => 'nullable|string',
         ]);
 
-        SubCountyBbfRep::create($request->only('user_id', 'sub_county_id'));
+        $check = $this->service->canAssign(
+            $request->user_id,
+            $request->sub_county_id,
+            $request->level
+        );
 
-        return redirect()->route('sub_county_bbf_reps.index')
-                         ->with('success', 'Sub-County BBF Rep added successfully.');
-    }
+        if (!$check['ok']) {
+            return response()->json([
+                'status' => false,
+                'message' => $check['message']
+            ], 422);
+        }
 
-    public function show(SubCountyBbfRep $subCountyBbfRep)
-    {
-        return view('pages.backend.sub-county-reps.show', compact('subCountyBbfRep'));
-    }
+        $this->service->assign(
+            $request->user_id,
+            $request->sub_county_id,
+            $request->level
+        );
 
-    public function update(Request $request, SubCountyBbfRep $subCountyBbfRep)
-    {
-        $request->validate([
-            'sub_county_id' => 'required|exists:sub_counties,id',
-            'status' => 'required|in:active,suspended',
+        return response()->json([
+            'status' => true,
+            'message' => 'BBF Rep assigned successfully',
+            'redirect' => route('sub_county_bbf_reps.index')
         ]);
-
-        $subCountyBbfRep->update($request->only('sub_county_id', 'status'));
-
-        return redirect()->route('sub_county_bbf_reps.index')
-                         ->with('success', 'Sub-County BBF Rep updated successfully.');
     }
 
-    public function delete(SubCountyBbfRep $subCountyBbfRep)
+    public function show($id)
     {
-        $subCountyBbfRep->delete();
+        //
+    }
 
-        return redirect()->route('sub_county_bbf_reps.index')
-                         ->with('success', 'Sub-County BBF Rep deleted successfully.');
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function delete($id)
+    {
+        //
     }
 }
