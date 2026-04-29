@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AgencyPayer;
 use App\Models\BbfMembership;
+use App\Models\Feedback;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -32,5 +33,17 @@ class PdfDownloadController extends Controller
         $pdf = Pdf::loadView('pages.backend.bbf-pending-applications-pdf', compact('applications'));
 
         return $pdf->download('bbf_pending_applications_' . now()->format('Y-m-d') . '.pdf');
+    }
+
+    public function feedback()
+    {
+        $feedbacks = Feedback::latest()->get();
+
+        $pdf = Pdf::loadView(
+            'pages.backend.feedback-pdf',
+            compact('feedbacks')
+        );
+
+        return $pdf->download('teacher_feedback_' . now()->format('Y-m-d') . '.pdf');
     }
 }

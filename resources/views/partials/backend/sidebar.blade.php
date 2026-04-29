@@ -77,6 +77,10 @@
                 <i class='bx bx-news'></i> Manage News
             </a>
 
+            <a href="{{ route('feedback.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
+                <i class='bx bx-message-square-detail'></i>View Feedbacks
+            </a>
+
         </nav>
 
     </aside>

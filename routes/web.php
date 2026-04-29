@@ -16,7 +16,7 @@ Route::view('/downloads', 'pages.frontend.downloads')->name('downloads');
 Route::view('/bec-circulars', 'pages.frontend.circulars')->name('circulars');
 Route::view('/petitions-memoranda', 'pages.frontend.memoranda-and-petitions')->name('petitions.memoranda');
 Route::view('/bbf/by-laws-comparison', 'pages.frontend.welfare-reform-brief')->name('bbf.by-laws.comparison');
-// Route::view('/financial-report/march-april-2026', 'pages.frontend.financial-report')->name('financial.report.march.april.2026');
+Route::view('/financial-report/march-april-2026', 'pages.frontend.financial-report')->name('financial.report.march.april.2026');
 
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
@@ -66,4 +66,10 @@ Route::prefix('admin/news')->middleware(['auth', 'role:executive|organising-secr
     Route::get('{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
     Route::put('{news}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+});
+
+Route::prefix('admin')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+    Route::get('feedback/pdf', [PdfDownloadController::class, 'feedback'])->name('feedback.pdf');
+    Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
 });

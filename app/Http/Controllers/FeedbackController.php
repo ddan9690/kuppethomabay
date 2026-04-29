@@ -26,4 +26,18 @@ class FeedbackController
             'message' => 'Thank you for your feedback!'
         ]);
     }
+
+    public function index()
+    {
+        $feedbacks = Feedback::latest()->paginate(3);
+
+        return view('pages.backend.feedback.index', compact('feedbacks'));
+    }
+
+    public function show($id)
+    {
+        $feedback = Feedback::findOrFail($id);
+
+        return view('pages.backend.feedback.show', compact('feedback'));
+    }
 }
