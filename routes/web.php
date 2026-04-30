@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgencyPayerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BbfMembershipController;
+use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
@@ -27,6 +28,12 @@ Route::get('/agency-payer', [AgencyPayerController::class, 'create'])->name('age
 Route::post('/agency-payer', [AgencyPayerController::class, 'store'])->name('agency_payer.store');
 
 Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
+
+Route::get('/claims', [ClaimController::class, 'index'])->name('bbf.claims.index');
+Route::get('/claims/terms', [ClaimController::class, 'terms'])->name('bbf.claims.terms');
+Route::post('/claims/terms/accept', [ClaimController::class, 'acceptTerms'])->name('bbf.claims.terms.accept');
+Route::get('/claims/submit', [ClaimController::class, 'create'])->name('bbf.claims.create');
+Route::post('/bbf/claims', [ClaimController::class, 'store'])->name('bbf.claims.store');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -73,3 +80,5 @@ Route::prefix('admin')->middleware(['auth', 'role:executive|organising-secretary
     Route::get('feedback/pdf', [PdfDownloadController::class, 'feedback'])->name('feedback.pdf');
     Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
 });
+
+Route::prefix('claims')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {});

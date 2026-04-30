@@ -38,9 +38,8 @@
                     <a href="{{ route('bbf.register') }}" class="block px-6 py-2 hover:bg-green transition">
                         Join/Register BBF
                     </a>
-                    <a href="{{ asset('assets/documents/KUPPET HB WELFAFE SCHEME CLAIM FORM.pdf') }}" download
-                        class="block px-6 py-2 hover:bg-green transition">
-                        Claim Form
+                    <a href="{{ route('bbf.claims.index') }}" class="block px-6 py-2 hover:bg-green transition">
+                        Submit Claim
                     </a>
                 </div>
             </div>
@@ -117,9 +116,8 @@
                 <a href="{{ route('bbf.register') }}" class="block px-6 py-2 hover:bg-green transition">
                     Join/Register BBF
                 </a>
-                <a href="{{ asset('assets/documents/KUPPET HB WELFAFE SCHEME CLAIM FORM.pdf') }}" download
-                    class="block px-6 py-2 hover:bg-green transition">
-                    Claim Form
+                <a href="{{ route('bbf.claims.index') }}" class="block px-6 py-2 hover:bg-green transition">
+                    Submit Claim
                 </a>
             </div>
         </div>
