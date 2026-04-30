@@ -18,6 +18,8 @@ Route::view('/bec-circulars', 'pages.frontend.circulars')->name('circulars');
 Route::view('/petitions-memoranda', 'pages.frontend.memoranda-and-petitions')->name('petitions.memoranda');
 Route::view('/bbf/by-laws-comparison', 'pages.frontend.welfare-reform-brief')->name('bbf.by-laws.comparison');
 // Route::view('/financial-report/march-april-2026', 'pages.frontend.financial-report')->name('financial.report.march.april.2026');
+Route::view('/teacher-mental-health-awareness', 'pages.frontend.mental-health')
+    ->name('mental.health');
 
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
