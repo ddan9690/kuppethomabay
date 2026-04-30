@@ -668,7 +668,7 @@
 
         <div class="kp-hero-inner">
             <div class="kp-campaign-tag">
-                KUPPET Homa Bay Branch &nbsp;·&nbsp; 2025 Awareness Campaign
+                KUPPET Homa Bay Branch &nbsp;·&nbsp; May 2026  Awareness Campaign
             </div>
 
             <h1>Your Mind<br><em>Matters.</em></h1>
@@ -676,7 +676,7 @@
             <div class="kp-hero-divider"></div>
             <p class="kp-hero-desc">
                 A message of solidarity, care, and hope for every teacher across Homa Bay County.
-                You pour your whole self into shaping lives — let us help protect yours.
+                You pour your whole self into shaping lives. Let us help protect yours.
             </p>
 
             <div class="kp-hero-stats">
