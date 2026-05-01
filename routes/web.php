@@ -20,6 +20,7 @@ Route::view('/bbf/by-laws-comparison', 'pages.frontend.welfare-reform-brief')->n
 // Route::view('/financial-report/march-april-2026', 'pages.frontend.financial-report')->name('financial.report.march.april.2026');
 Route::view('/teacher-mental-health-awareness', 'pages.frontend.mental-health')
     ->name('mental.health');
+Route::view('/bec-office', 'pages.frontend.bec')->name('bec.officials');
 
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
