@@ -91,6 +91,7 @@
 
     {{-- Header --}}
     @include('partials.frontend.header')
+    @include('partials.frontend.sha-banner')
 
     {{-- Main Content --}}
     <main class="min-h-screen">

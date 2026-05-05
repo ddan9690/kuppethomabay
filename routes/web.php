@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BbfMembershipController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FacilityExperienceController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
@@ -37,6 +38,11 @@ Route::get('/claims/terms', [ClaimController::class, 'terms'])->name('bbf.claims
 Route::post('/claims/terms/accept', [ClaimController::class, 'acceptTerms'])->name('bbf.claims.terms.accept');
 Route::get('/claims/submit', [ClaimController::class, 'create'])->name('bbf.claims.create');
 Route::post('/bbf/claims', [ClaimController::class, 'store'])->name('bbf.claims.store');
+
+Route::get('/KUPPET-Homabay-SHA-experience-report', [FacilityExperienceController::class, 'create'])
+    ->name('sha.facility_experience.create');
+
+Route::post('/KUPPET-Homabay-SHA-experience-report', [FacilityExperienceController::class, 'store'])->name('facility_experience.store');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -82,6 +88,8 @@ Route::prefix('admin')->middleware(['auth', 'role:executive|organising-secretary
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
     Route::get('feedback/pdf', [PdfDownloadController::class, 'feedback'])->name('feedback.pdf');
     Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
+    Route::get('/admin/facility-experiences', [FacilityExperienceController::class, 'index'])
+    ->name('facility_experience.index');
 });
 
 Route::prefix('claims')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {});
