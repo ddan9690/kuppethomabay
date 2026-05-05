@@ -13,11 +13,11 @@
                 SHA Facility Experience Reports
             </h2>
 
-            {{-- Optional future PDF export --}}
-            {{-- <a href="#"
-               class="bg-green hover:bg-green-700 text-white text-xs px-3 py-2 rounded">
+            {{-- PDF Export --}}
+            <a href="{{ route('sha.reports.pdf') }}"
+               class="bg-green hover:bg-green-dark text-white text-xs px-3 py-2 rounded shadow">
                 Download PDF
-            </a> --}}
+            </a>
 
         </div>
 

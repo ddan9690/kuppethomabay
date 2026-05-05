@@ -64,6 +64,13 @@ Route::prefix('admin/bbf')->middleware(['auth', 'role:executive|organising-secre
     Route::post('members/{id}/approve', [BbfMembershipController::class, 'approve'])->name('bbf.members.approve');
     Route::post('members/{id}/reject', [BbfMembershipController::class, 'reject'])->name('bbf.members.reject');
     Route::get('applications/pdf', [PdfDownloadController::class, 'bbfPendingApplications'])->name('bbf.applications.pending.pdf');
+    
+});
+
+Route::prefix('sha-reports')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
+   Route::get('sha-reports/pdf', [PdfDownloadController::class, 'shaFacilityReports'])
+    ->name('sha.reports.pdf');
+
 });
 
 Route::prefix('admin/sub-county-reps')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {

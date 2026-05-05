@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AgencyPayer;
 use App\Models\BbfMembership;
+use App\Models\FacilityExperience;
 use App\Models\Feedback;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -45,5 +46,20 @@ class PdfDownloadController extends Controller
         );
 
         return $pdf->download('teacher_feedback_' . now()->format('Y-m-d') . '.pdf');
+    }
+
+
+    public function shaFacilityReports()
+    {
+        $reports = FacilityExperience::with('subCounty')
+            ->latest()
+            ->get();
+
+        $pdf = Pdf::loadView(
+            'pages.backend.sha-facility-reports-pdf',
+            compact('reports')
+        );
+
+        return $pdf->download('sha_facility_reports_' . now()->format('Y-m-d') . '.pdf');
     }
 }
