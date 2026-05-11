@@ -23,6 +23,8 @@ Route::view('/teacher-mental-health-awareness', 'pages.frontend.mental-health')
     ->name('mental.health');
 Route::view('/bec-office', 'pages.frontend.bec')->name('bec.officials');
 
+Route::view('/tsc/regulation-20-proposal', 'pages.frontend.tsc-regulation-20')->name('tsc.regulation20');
+
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/bbf/register', [BbfMembershipController::class, 'create'])->name('bbf.register');
