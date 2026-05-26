@@ -25,6 +25,8 @@ Route::view('/bec-office', 'pages.frontend.bec')->name('bec.officials');
 
 Route::view('/tsc/regulation-20-proposal', 'pages.frontend.tsc-regulation-20')->name('tsc.regulation20');
 
+Route::view('/events/kuppet-homabay-thanksgiving-ceremony', 'pages.frontend.thanksgiving')->name('thanksgiving');
+
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/bbf/register', [BbfMembershipController::class, 'create'])->name('bbf.register');
