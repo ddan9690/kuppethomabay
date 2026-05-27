@@ -44,7 +44,7 @@
             </p>
 
             <div x-data="{
-                targetDate: new Date('2026-05-30T08:30:00').getTime(),
+                targetDate: new Date('2026-05-30T09:00:00').getTime(),
                 days: 0,
                 hours: 0,
                 minutes: 0,
@@ -100,7 +100,7 @@
                 <div>
                     <span class="text-xs uppercase tracking-wider text-gray shadow-none block font-semibold">When</span>
                     <p class="text-gray-dark font-bold">Saturday, 30th May 2026</p>
-                    <p class="text-xs text-gray-dark/70">Starting from 8:30 A.M.</p>
+                    <p class="text-xs text-gray-dark/70">Starting from 9:00 A.M.</p>
                 </div>
             </div>
 
@@ -116,7 +116,7 @@
                 <div>
                     <span class="text-xs uppercase tracking-wider text-gray block font-semibold">Where</span>
                     <p class="text-gray-dark font-bold">Raila Odinga Stadium</p>
-                    <p class="text-xs text-gray-dark/70">Homa Bay Town</p>
+                    <p class="text-xs text-gray-dark/70">Homa Bay</p>
                 </div>
             </div>
 
@@ -129,8 +129,7 @@
                 </div>
                 <div>
                     <span class="text-xs uppercase tracking-wider text-gray block font-semibold">Transport Logistics</span>
-                    <p class="text-gray-dark text-sm font-medium">Coordinated via Sub-County Welfare & BBF Representatives.
-                    </p>
+                    <p class="text-gray-dark text-sm font-medium">Coordinated via Sub-County Welfare & BBF Representatives.</p>
                 </div>
             </div>
         </div>
@@ -168,7 +167,7 @@
                                 FCPA Hon. John Mbadi Ng'ongo, EGH
                             </h3>
                             <p class="text-green-dark text-sm font-semibold tracking-wide uppercase mb-4">
-                                Cabinet Secretary, The National Treasury and Economic Planning
+                                Cabinet Secretary for the National Treasury and Economic Planning
                             </p>
                             <p class="text-gray-dark/80 text-sm leading-relaxed">
                                 We are profoundly privileged to be graced by the Cabinet Secretary, who alongside other
@@ -206,7 +205,7 @@
                                 Executive Secretary, KUPPET Homa Bay Branch
                             </p>
                             <p class="text-gray-dark/80 text-sm leading-relaxed">
-                                On behalf of the Branch Executive Committee (BGC), your Executive Secretary cordially calls
+                                On behalf of the Branch Executive Committee (BEC), your Executive Secretary cordially calls
                                 upon all regional delegates, branch stakeholders, and valued educators to come out in large
                                 numbers to secure our union's future.
                             </p>
@@ -228,48 +227,88 @@
                 <button @click="currentTab = 'morning'"
                     :class="currentTab === 'morning' ? 'border-green text-green font-bold' :
                         'border-transparent text-gray hover:text-gray-dark'"
-                    class="px-6 py-2 border-b-2 text-sm transition-all focus:outline-none">Morning Session</button>
+                    class="px-6 py-2 border-b-2 text-sm transition-all focus:outline-none">Morning &amp; Introductions</button>
                 <button @click="currentTab = 'midday'"
                     :class="currentTab === 'midday' ? 'border-green text-green font-bold' :
                         'border-transparent text-gray hover:text-gray-dark'"
-                    class="px-6 py-2 border-b-2 text-sm transition-all focus:outline-none">Main Agenda</button>
+                    class="px-6 py-2 border-b-2 text-sm transition-all focus:outline-none">Main Event &amp; Speeches</button>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray/20">
-                <div x-show="currentTab === 'morning'" class="space-y-4">
+                <div x-show="currentTab === 'morning'" class="space-y-6">
                     <div class="flex gap-4 items-start pb-4 border-b border-gray-light">
-                        <span class="bg-green/10 text-green font-bold text-xs px-3 py-1 rounded">08:30 AM</span>
-                        <div>
-                            <h4 class="font-bold text-gray-dark">Arrival & Assembly</h4>
-                            <p class="text-sm text-gray-dark/70">Delegates, guests, and union members arrive at Raila
-                                Odinga Stadium.</p>
+                        <span class="bg-green/10 text-green font-bold text-xs px-3 py-1 rounded whitespace-nowrap">09:00 – 10:30 AM</span>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-dark">Arrival, Registration &amp; Refreshments</h4>
+                            <p class="text-sm text-gray-dark/70">Arrival and Registration of the great teachers of Homabay Branch and Guests.</p>
+                            <span class="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-green-dark bg-gray-light px-2 py-0.5 rounded">Action: Ushers / BEC</span>
                         </div>
                     </div>
+                    
+                    <div class="flex gap-4 items-start pb-4 border-b border-gray-light">
+                        <span class="bg-green/10 text-green font-bold text-xs px-3 py-1 rounded whitespace-nowrap">10:30 – 11:00 AM</span>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-dark">Opening Session</h4>
+                            <p class="text-sm text-gray-dark/70">Opening Prayers &amp; Welcoming Remarks.</p>
+                            <span class="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-green-dark bg-gray-light px-2 py-0.5 rounded">Action: MC / Moderators</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start pb-4 border-b border-gray-light">
+                        <span class="bg-green/10 text-green font-bold text-xs px-3 py-1 rounded whitespace-nowrap">11:00 AM – 12:30 PM</span>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-dark">Devotional Service</h4>
+                            <p class="text-sm text-gray-dark/70">Divine Sermon with Praise and Worship.</p>
+                            <span class="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-green-dark bg-gray-light px-2 py-0.5 rounded">Action: Clergy</span>
+                        </div>
+                    </div>
+
                     <div class="flex gap-4 items-start">
-                        <span class="bg-green/10 text-green font-bold text-xs px-3 py-1 rounded">09:30 AM</span>
-                        <div>
-                            <h4 class="font-bold text-gray-dark">Thanksgiving Devotion & Welcoming Remarks</h4>
-                            <p class="text-sm text-gray-dark/70">Opening prayers followed directly by introductory
-                                addresses from the BGC panel.</p>
+                        <span class="bg-green/10 text-green font-bold text-xs px-3 py-1 rounded whitespace-nowrap">12:30 – 1:00 PM</span>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-dark">Introductions of Stakeholders &amp; Branches</h4>
+                            <div class="text-sm text-gray-dark/70 grid grid-cols-2 gap-x-4 mt-1 font-medium">
+                                <div>• Sports Leadership</div>
+                                <div>• Mwalimu Sacco</div>
+                                <div>• KEPSHA</div>
+                                <div>• KESSHA</div>
+                                <div>• MOE</div>
+                                <div>• TSC</div>
+                                <div>• KNUT</div>
+                                <div>• KUPPET Visiting Branches</div>
+                            </div>
+                            <span class="inline-block mt-3 text-[11px] font-bold uppercase tracking-wider text-green-dark bg-gray-light px-2 py-0.5 rounded">Action: MC / BEC Moderator</span>
                         </div>
                     </div>
                 </div>
 
-                <div x-show="currentTab === 'midday'" class="space-y-4" x-cloak>
+                <div x-show="currentTab === 'midday'" class="space-y-6" x-cloak>
                     <div class="flex gap-4 items-start pb-4 border-b border-gray-light">
-                        <span class="bg-gold/20 text-gold-dark font-bold text-xs px-3 py-1 rounded">11:00 AM</span>
-                        <div>
-                            <h4 class="font-bold text-gray-dark">Address by Host & Key Stakeholders</h4>
-                            <p class="text-sm text-gray-dark/70">Key addresses from Executive Secretary Mr. Tom Odhiambo
-                                and local leadership.</p>
+                        <span class="bg-gold/20 text-gold-dark font-bold text-xs px-3 py-1 rounded whitespace-nowrap">1:00 – 1:30 PM</span>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-dark">Official Speeches</h4>
+                            <p class="text-sm text-gray-dark/70">Key union strategy addresses from the Host branch team and the National Executive Board (NEB).</p>
+                            <span class="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-green-dark bg-gray-light px-2 py-0.5 rounded">Action: BEC / NEB</span>
                         </div>
                     </div>
+
+                    <div class="flex gap-4 items-start pb-4 border-b border-gray-light">
+                        <span class="bg-gold/20 text-gold-dark font-bold text-xs px-3 py-1 rounded whitespace-nowrap">1:30 – 3:00 PM</span>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-dark">Fundraisers Drive</h4>
+                            <p class="text-sm text-gray-dark/80 mb-1 font-semibold text-green">Chief Guest: Hon. FCPA John Mbadi Ng'ongo, EGH</p>
+                            <p class="text-xs text-gray-dark/70 italic mb-2">Cabinet Secretary for the National Treasury and Economic Planning</p>
+                            <p class="text-sm text-gray-dark/70">Main fundraising track featuring invited core guests towards completing the KUPPET Centre.</p>
+                            <span class="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-green-dark bg-gray-light px-2 py-0.5 rounded">Action: MC / Moderators</span>
+                        </div>
+                    </div>
+
                     <div class="flex gap-4 items-start">
-                        <span class="bg-green/10 text-green font-bold text-xs px-3 py-1 rounded">12:30 PM</span>
-                        <div>
-                            <h4 class="font-bold text-gray-dark">Fundraising Drive & Keynote Speech</h4>
-                            <p class="text-sm text-gray-dark/70">Led by Chief Guest FCPA Hon. John Mbadi Ng'ongo towards
-                                completion of the KUPPET Centre.</p>
+                        <span class="bg-gold/20 text-gold-dark font-bold text-xs px-3 py-1 rounded whitespace-nowrap">3:00 PM – End</span>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-dark">Event Conclusion</h4>
+                            <p class="text-sm text-gray-dark/70">Official Vote of Thanks and Closing Prayer.</p>
+                            <span class="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-green-dark bg-gray-light px-2 py-0.5 rounded">Action: MC / Moderators</span>
                         </div>
                     </div>
                 </div>
@@ -318,15 +357,18 @@
                 <span class="block text-gold uppercase tracking-widest text-xs font-bold mb-3">RSVP Status</span>
                 <div
                     class="inline-flex bg-green-dark border border-white/20 rounded-xl px-6 py-3 font-serif italic text-lg shadow-inner text-gray-light">
-                    "Yours in Service — BGC KUPPET HB"
+                    "Yours in Service — BEC KUPPET HB"
                 </div>
             </div>
 
             <div class="mt-8 block text-center">
                 <span
                     class="inline-block bg-gold text-gray-dark text-xs font-black tracking-widest uppercase px-6 py-2.5 rounded-full shadow-lg">
-                    PURPOSE TO ATTEND!
+                    ALL MEMBERS AND GUESTS ARE WARMLY WELCOMED
                 </span>
+                <p class="mt-4 font-serif italic text-white/90 text-sm md:text-base">
+                    Let us give thanks and build our union together
+                </p>
             </div>
         </div>
     </section>
