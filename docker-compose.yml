@@ -12,6 +12,7 @@ services:
       - ./:/var/www/kuppethomabay
     depends_on:
       - db
+    restart: unless-stopped
 
   nginx:
     image: nginx:alpine
@@ -32,7 +33,7 @@ services:
     environment:
       MYSQL_DATABASE: kuppethomabay
       MYSQL_USER: jamadata
-      MYSQL_PASSWORD: "Jama@2026#Kuppet!9X"
+      MYSQL_PASSWORD: "J@maD@ta#Kp2026!Zx91"
       MYSQL_ROOT_PASSWORD: "Root@2026#Kuppet!9X"
     ports:
       - "3307:3306"
@@ -40,11 +41,13 @@ services:
       - dbdata:/var/lib/mysql
 
   adminer:
-    image: adminer
+    image: adminer:latest
     container_name: kuppet_adminer
     restart: unless-stopped
     ports:
       - "8081:8080"
+    depends_on:
+      - db
 
 volumes:
   dbdata:
