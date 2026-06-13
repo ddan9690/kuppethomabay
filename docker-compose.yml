@@ -29,6 +29,15 @@ services:
     networks:
       - kuppet_network
 
+  certbot:
+    image: certbot/certbot
+    container_name: kuppet_certbot
+    volumes:
+      - /var/www/certbot:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt
+    networks:
+      - kuppet_network
+
   db:
     image: mysql:8.0
     container_name: kuppet_db
