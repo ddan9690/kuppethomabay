@@ -18,7 +18,7 @@
             <li class="flex justify-between items-center border-b pb-2">
                 <span>Amendments to BBF By-Laws</span>
                 <a href="{{ asset('assets/images/circulars/amendments-to-bbf-by-laws.jpg') }}" download
-                   class="text-green hover:underline font-medium">
+                    class="text-green hover:underline font-medium">
                     Download
                 </a>
             </li>
@@ -27,7 +27,7 @@
             <li class="flex justify-between items-center border-b pb-2">
                 <span>Handing Over Notice</span>
                 <a href="{{ asset('assets/images/circulars/handing-over-notice.jpg') }}" download
-                   class="text-green hover:underline font-medium">
+                    class="text-green hover:underline font-medium">
                     Download
                 </a>
             </li>
@@ -36,15 +36,34 @@
             <li class="flex justify-between items-center border-b pb-2">
                 <span>Nomination of Women Representatives to BEC</span>
                 <a href="{{ asset('assets/images/circulars/nomination-of-women-representatives-to-bec.jpg') }}" download
-                   class="text-green hover:underline font-medium">
+                    class="text-green hover:underline font-medium">
                     Download
                 </a>
             </li>
 
-              <li class="flex justify-between items-center border-b pb-2">
+            {{-- KUPPET Homa Bay Elected Leaders List --}}
+            <li class="flex justify-between items-center border-b pb-2">
                 <span>KUPPET-Homa-Bay-Branch-Elected-Leaders-List-2026-2031</span>
                 <a href="{{ asset('assets/documents/KUPPET-Homa-Bay-Branch-Elected-Leaders-List-2026-2031.pdf') }}" download
-                   class="text-green hover:underline font-medium">
+                    class="text-green hover:underline font-medium">
+                    Download
+                </a>
+            </li>
+
+            {{-- Proposed Revised CPG --}}
+            <li class="flex justify-between items-center border-b pb-2">
+                <span>Highlights of the Proposed Revised CPG (Teachers & CSOs)</span>
+                <a href="{{ asset('assets/documents/PROPOSED REVISED CPG.pdf') }}" download
+                    class="text-green hover:underline font-medium">
+                    Download
+                </a>
+            </li>
+
+            {{-- TSC Monthly Newsletter --}}
+            <li class="flex justify-between items-center border-b pb-2">
+                <span>Teachers Service Commission - Monthly Newsletter (Update 134)</span>
+                <a href="{{ asset('assets/documents/UPDATE 134.pdf') }}" download
+                    class="text-green hover:underline font-medium">
                     Download
                 </a>
             </li>

@@ -19,7 +19,7 @@
                 {{-- Document 1 --}}
                 <li class="border-b pb-3">
                     <a href="{{ asset('assets/documents/memorandum-and-petitions/ELECTION OR NOMINATION_ SOLVING THE STALEMATE ON THE BURIAL _ BENEVOLENT FUND (BBF) DELEGATES.pdf') }}"
-                       class="hover:text-green hover:underline transition">
+                        class="hover:text-green hover:underline transition">
                         Election or Nomination: Solving the Stalemate on the Burial Benevolent Fund (BBF) Delegates
                     </a>
                 </li>
@@ -27,16 +27,24 @@
                 {{-- Document 2 --}}
                 <li class="border-b pb-3">
                     <a href="{{ asset('assets/documents/memorandum-and-petitions/JAMES ARIANDA - BBF LETTER.pdf') }}"
-                       class="hover:text-green hover:underline transition">
+                        class="hover:text-green hover:underline transition">
                         James Arianda - BBF Letter
                     </a>
                 </li>
 
                 {{-- Document 3 --}}
-                <li>
+                <li class="border-b pb-3">
                     <a href="{{ asset('assets/documents/memorandum-and-petitions/MEMORANDUM ON THE HOMA BAY Benevolence Benefit Scheme DELEGATE - 2026.pdf') }}"
-                       class="hover:text-green hover:underline transition">
+                        class="hover:text-green hover:underline transition">
                         Memorandum on the Homa Bay Benevolence Benefit Scheme Delegate - 2026
+                    </a>
+                </li>
+
+                {{-- New Document: Fredrick Otieno Petition --}}
+                <li>
+                    <a href="{{ asset('assets/documents/memorandum-and-petitions/Fredrick_Otieno_Comprehensive_Petition_Automatic_Promotion.pdf') }}"
+                        class="hover:text-green hover:underline transition">
+                        Petition for the Comprehensive Review of the Career Progression Guidelines (CPG) - Fredrick Otieno
                     </a>
                 </li>
 
