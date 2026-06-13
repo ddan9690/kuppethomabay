@@ -66,7 +66,7 @@
     {{-- DataTables JS --}}
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-    {{-- SweetAlert2 --}}
+    {{-- SweetAlert2 (You can remove these two lines if you are no longer using popups anywhere) --}}
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
@@ -84,7 +84,6 @@
         gtag('js', new Date());
         gtag('config', 'G-LCKK65BC2Z');
     </script>
-
 </head>
 
 <body class="bg-gray-light text-gray-dark font-sans">
@@ -122,61 +121,5 @@
 
         });
     </script>
-
-    {{-- 🔥 MENTAL HEALTH CAMPAIGN POPUP (FIXED: SHOWS ON EVERY REFRESH) --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-
-            // Only homepage
-            if (window.location.pathname !== '/') return;
-
-            setTimeout(() => {
-
-                Swal.fire({
-                    title: '<span style="font-size:1.8rem;font-weight:600;">Your Mind Matters 💚</span>',
-
-                    html: `
-                        <p style="font-size:0.95rem; line-height:1.7; opacity:0.85;">
-                            Teaching shapes lives; but it should not cost you your peace.
-                            Join the <strong>Teacher Mental Health & Wellness Campaign</strong>
-                            and stand with fellow teachers across Homa Bay.
-                        </p>
-                    `,
-
-                    confirmButtonText: '💚 Take the Wellness Pledge',
-                    cancelButtonText: 'Maybe Later',
-
-                    showCancelButton: true,
-
-                    confirmButtonColor: '#52b788',
-                    cancelButtonColor: '#6b7280',
-
-                    background: 'rgba(13, 43, 29, 0.95)',
-                    color: '#ffffff',
-
-                    backdrop: `
-                        rgba(0,0,0,0.75)
-                        url("/assets/images/mental-health/mental-health-image.jpg")
-                        center top
-                        no-repeat
-                    `,
-
-                    width: '600px',
-                    padding: '2.5rem',
-
-                    allowOutsideClick: true,
-                    allowEscapeKey: true
-
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "{{ route('mental.health') }}";
-                    }
-                });
-
-            }, 1200);
-
-        });
-    </script>
-
 </body>
 </html>
