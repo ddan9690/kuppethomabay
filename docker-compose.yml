@@ -1,18 +1,16 @@
 version: "3.9"
 
 services:
-
   app:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
     container_name: kuppet_app
-    working_dir: /var/www/kuppethomabay
+    restart: unless-stopped
     volumes:
       - ./:/var/www/kuppethomabay
-    depends_on:
-      - db
-    restart: unless-stopped
+    networks:
+      - kuppet_network
 
   nginx:
     image: nginx:alpine
@@ -22,9 +20,11 @@ services:
       - "80:80"
     volumes:
       - ./:/var/www/kuppethomabay
-      - ./docker/nginx/kuppet.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/kuppet.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - app
+    networks:
+      - kuppet_network
 
   db:
     image: mysql:8.0
@@ -35,10 +35,10 @@ services:
       MYSQL_USER: jamadata
       MYSQL_PASSWORD: "J@maD@ta#Kp2026!Zx91"
       MYSQL_ROOT_PASSWORD: "Root@2026#Kuppet!9X"
-    ports:
-      - "3307:3306"
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      - kuppet_network
 
   adminer:
     image: adminer:latest
@@ -46,8 +46,12 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8080"
-    depends_on:
-      - db
+    networks:
+      - kuppet_network
+
+networks:
+  kuppet_network:
+    driver: bridge
 
 volumes:
   dbdata:
