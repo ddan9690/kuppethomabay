@@ -9,6 +9,7 @@ use App\Http\Controllers\FacilityExperienceController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OfficialsController;
 use App\Http\Controllers\PdfDownloadController;
 use App\Http\Controllers\SubCountyBbfRepController;
 use Illuminate\Support\Facades\Route;
@@ -18,14 +19,27 @@ Route::view('/downloads', 'pages.frontend.downloads')->name('downloads');
 Route::view('/bec-circulars', 'pages.frontend.circulars')->name('circulars');
 Route::view('/petitions-memoranda', 'pages.frontend.memoranda-and-petitions')->name('petitions.memoranda');
 Route::view('/bbf/by-laws-comparison', 'pages.frontend.welfare-reform-brief')->name('bbf.by-laws.comparison');
-// Route::view('/financial-report/march-april-2026', 'pages.frontend.financial-report')->name('financial.report.march.april.2026');
-Route::view('/teacher-mental-health-awareness', 'pages.frontend.mental-health')
-    ->name('mental.health');
-Route::view('/bec-office', 'pages.frontend.bec')->name('bec.officials');
-
+Route::view('/teacher-mental-health-awareness', 'pages.frontend.mental-health')->name('mental.health');
 Route::view('/tsc/regulation-20-proposal', 'pages.frontend.tsc-regulation-20')->name('tsc.regulation20');
+Route::view('/press-statements', 'pages.frontend.press-statements')->name('press.statements');
 
-Route::view('/events/kuppet-homabay-thanksgiving-ceremony', 'pages.frontend.thanksgiving')->name('thanksgiving');
+Route::prefix('bec-office')->group(function () {
+    Route::get('/', [OfficialsController::class, 'index'])->name('bec.officials');
+    Route::get('/profile/executive-secretary/thomas-odhiambo', [OfficialsController::class, 'thomasOdhiambo'])->name('profile.thomas_odhiambo');
+    Route::get('/profile/chairperson/peter-otieno', [OfficialsController::class, 'peterOtieno'])->name('profile.peter_otieno');
+    Route::get('/profile/treasurer/tembo-mwadime', [OfficialsController::class, 'temboMwadime'])->name('profile.tembo_mwadime');
+    Route::get('/profile/vice-chairperson/richard-otieno', [OfficialsController::class, 'richardOtieno'])->name('profile.richard_otieno');
+    Route::get('/profile/assistant-treasurer/felix-odour', [OfficialsController::class, 'felixOdour'])->name('profile.felix_odour');
+    Route::get('/profile/assistant-executive-secretary/kennedy-atanga', [OfficialsController::class, 'kennedyAtanga'])->name('profile.kennedy_atanga');
+    Route::get('/profile/organising-secretary/churchill-aroko', [OfficialsController::class, 'churchillAroko'])->name('profile.churchill_aroko');
+    Route::get('/profile/secretary-secondary/kennedy-osewe', [OfficialsController::class, 'kennedyOsewe'])->name('profile.kennedy_osewe');
+    Route::get('/profile/secretary-junior-school/philip-adede', [OfficialsController::class, 'philipAdede'])->name('profile.philip_adede');
+    Route::get('/profile/secretary-tertiary/lucas-okinda', [OfficialsController::class, 'lucasOkinda'])->name('profile.lucas_okinda');
+    Route::get('/profile/gender-secretary/rose-okeyo', [OfficialsController::class, 'roseOkeyo'])->name('profile.rose_okeyo');
+    Route::get('/profile/1st-assistant-gender-secretary/quinter-nyakiye', [OfficialsController::class, 'quinterNyakiye'])->name('profile.quinter_nyakiye');
+    Route::get('/profile/2nd-assistant-gender-secretary/dancun-alaka', [OfficialsController::class, 'dancunAlaka'])->name('profile.dancun_alaka');
+    Route::get('/profile/3rd-assistant-gender-secretary/anne-blessings', [OfficialsController::class, 'anneBlessings'])->name('profile.anne_blessings');
+});
 
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
@@ -36,16 +50,13 @@ Route::get('/agency-payer', [AgencyPayerController::class, 'create'])->name('age
 Route::post('/agency-payer', [AgencyPayerController::class, 'store'])->name('agency_payer.store');
 
 Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
-
 Route::get('/claims', [ClaimController::class, 'index'])->name('bbf.claims.index');
 Route::get('/claims/terms', [ClaimController::class, 'terms'])->name('bbf.claims.terms');
 Route::post('/claims/terms/accept', [ClaimController::class, 'acceptTerms'])->name('bbf.claims.terms.accept');
 Route::get('/claims/submit', [ClaimController::class, 'create'])->name('bbf.claims.create');
 Route::post('/bbf/claims', [ClaimController::class, 'store'])->name('bbf.claims.store');
 
-Route::get('/KUPPET-Homabay-SHA-experience-report', [FacilityExperienceController::class, 'create'])
-    ->name('sha.facility_experience.create');
-
+Route::get('/KUPPET-Homabay-SHA-experience-report', [FacilityExperienceController::class, 'create'])->name('sha.facility_experience.create');
 Route::post('/KUPPET-Homabay-SHA-experience-report', [FacilityExperienceController::class, 'store'])->name('facility_experience.store');
 
 Route::middleware('guest')->group(function () {
@@ -62,45 +73,41 @@ Route::middleware('auth')->group(function () {
     Route::get('agency-payers/pdf', [PdfDownloadController::class, 'agencyPayers'])->name('agency_payer.pdf');
 });
 
-Route::prefix('admin/bbf')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
-    Route::get('applications', [BbfMembershipController::class, 'applications'])->name('bbf.applications.index');
-    Route::get('members/{id}', [BbfMembershipController::class, 'show'])->name('bbf.members.show');
-    Route::post('members/{id}/approve', [BbfMembershipController::class, 'approve'])->name('bbf.members.approve');
-    Route::post('members/{id}/reject', [BbfMembershipController::class, 'reject'])->name('bbf.members.reject');
-    Route::get('applications/pdf', [PdfDownloadController::class, 'bbfPendingApplications'])->name('bbf.applications.pending.pdf');
-    
+Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
+    Route::prefix('admin/bbf')->group(function () {
+        Route::get('applications', [BbfMembershipController::class, 'applications'])->name('bbf.applications.index');
+        Route::get('members/{id}', [BbfMembershipController::class, 'show'])->name('bbf.members.show');
+        Route::post('members/{id}/approve', [BbfMembershipController::class, 'approve'])->name('bbf.members.approve');
+        Route::post('members/{id}/reject', [BbfMembershipController::class, 'reject'])->name('bbf.members.reject');
+        Route::get('applications/pdf', [PdfDownloadController::class, 'bbfPendingApplications'])->name('bbf.applications.pending.pdf');
+    });
+
+    Route::prefix('sha-reports')->group(function () {
+        Route::get('sha-reports/pdf', [PdfDownloadController::class, 'shaFacilityReports'])->name('sha.reports.pdf');
+    });
+
+    Route::prefix('admin/sub-county-reps')->group(function () {
+        Route::get('/', [SubCountyBbfRepController::class, 'index'])->name('sub_county_bbf_reps.index');
+        Route::get('create', [SubCountyBbfRepController::class, 'add'])->name('sub_county_bbf_reps.create');
+        Route::post('store', [SubCountyBbfRepController::class, 'store'])->name('sub_county_bbf_reps.store');
+        Route::get('{subCountyBbfRep}', [SubCountyBbfRepController::class, 'show'])->name('sub_county_bbf_reps.show');
+        Route::put('{subCountyBbfRep}', [SubCountyBbfRepController::class, 'update'])->name('sub_county_bbf_reps.update');
+        Route::delete('{subCountyBbfRep}', [SubCountyBbfRepController::class, 'destroy'])->name('sub_county_bbf_reps.destroy');
+    });
+
+    Route::prefix('admin/news')->group(function () {
+        Route::get('/', [NewsController::class, 'index'])->name('admin.news.index');
+        Route::get('create', [NewsController::class, 'create'])->name('admin.news.create');
+        Route::post('/', [NewsController::class, 'store'])->name('admin.news.store');
+        Route::get('{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+        Route::put('{news}', [NewsController::class, 'update'])->name('admin.news.update');
+        Route::delete('{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+        Route::get('feedback/pdf', [PdfDownloadController::class, 'feedback'])->name('feedback.pdf');
+        Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
+        Route::get('/admin/facility-experiences', [FacilityExperienceController::class, 'index'])->name('facility_experience.index');
+    });
 });
-
-Route::prefix('sha-reports')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
-   Route::get('sha-reports/pdf', [PdfDownloadController::class, 'shaFacilityReports'])
-    ->name('sha.reports.pdf');
-
-});
-
-Route::prefix('admin/sub-county-reps')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
-    Route::get('/', [SubCountyBbfRepController::class, 'index'])->name('sub_county_bbf_reps.index');
-    Route::get('create', [SubCountyBbfRepController::class, 'add'])->name('sub_county_bbf_reps.create');
-    Route::post('store', [SubCountyBbfRepController::class, 'store'])->name('sub_county_bbf_reps.store');
-    Route::get('{subCountyBbfRep}', [SubCountyBbfRepController::class, 'show'])->name('sub_county_bbf_reps.show');
-    Route::put('{subCountyBbfRep}', [SubCountyBbfRepController::class, 'update'])->name('sub_county_bbf_reps.update');
-    Route::delete('{subCountyBbfRep}', [SubCountyBbfRepController::class, 'destroy'])->name('sub_county_bbf_reps.destroy');
-});
-
-Route::prefix('admin/news')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
-    Route::get('/', [NewsController::class, 'index'])->name('admin.news.index');
-    Route::get('create', [NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/', [NewsController::class, 'store'])->name('admin.news.store');
-    Route::get('{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('{news}', [NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
-});
-
-Route::prefix('admin')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
-    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
-    Route::get('feedback/pdf', [PdfDownloadController::class, 'feedback'])->name('feedback.pdf');
-    Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
-    Route::get('/admin/facility-experiences', [FacilityExperienceController::class, 'index'])
-    ->name('facility_experience.index');
-});
-
-Route::prefix('claims')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {});

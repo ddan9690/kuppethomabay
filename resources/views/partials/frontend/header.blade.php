@@ -10,6 +10,7 @@
         <nav class="hidden md:flex items-center space-x-6">
             <a href="{{ url('/') }}" class="hover:text-gold transition font-medium">Home</a>
             <a href="{{ url('/bec-office') }}" class="hover:text-gold transition font-medium">BEC Office</a>
+            <a href="{{ url('/press-statements') }}" class="hover:text-gold transition font-medium">Press Statements</a>
             <a href="{{ url('/reports') }}" class="hover:text-gold transition font-medium">Reports</a>
             <a href="{{ url('/agency-payer') }}" class="hover:text-gold transition font-medium">Agency Payer</a>
 
@@ -87,6 +88,7 @@
         x-transition:leave-end="opacity-0 transform -translate-y-2" class="md:hidden bg-green text-white">
         <a href="{{ url('/') }}" class="block px-4 py-2 hover:bg-green-dark transition">Home</a>
         <a href="{{ url('/bec-office') }}" class="block px-4 py-2 hover:bg-green-dark transition">BEC Office</a>
+        <a href="{{ url('/press-statements') }}" class="block px-4 py-2 hover:bg-green-dark transition">Press Statements</a>
         <a href="{{ url('/reports') }}" class="block px-4 py-2 hover:bg-green-dark transition">Reports</a>
         <a href="{{ url('/agency-payer') }}" class="block px-4 py-2 hover:bg-green-dark transition">Agency Payer</a>
 
