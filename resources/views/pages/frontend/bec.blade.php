@@ -332,7 +332,12 @@
             
             <div class="bg-white rounded-xl border border-gray-200 shadow-md p-5 text-center hover:shadow-lg transition-shadow hover:border-green">
                 <div class="relative w-20 h-20 mx-auto mb-3">
-                    <div class="w-full h-full rounded-full bg-gray-100 flex items-center justify-center text-3xl text-gray-400 border-2 border-gray-200">👤</div>
+                    {{-- Updated Image --}}
+                    <img src="{{ asset($becBase . 'ann-belssing.jpg') }}" 
+                         alt="3rd Asst Gender Secretary" 
+                         class="w-full h-full rounded-full object-cover object-top bg-gray-100"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="w-full h-full rounded-full bg-gray-100 flex items-center justify-center text-3xl text-gray-400" style="display:none;">👤</div>
                     <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-gold rounded-full border-2 border-white flex items-center justify-center text-white text-[8px] font-bold shadow-md">3</div>
                     <div class="absolute inset-0 rounded-full border-2 border-green/20 pointer-events-none"></div>
                 </div>

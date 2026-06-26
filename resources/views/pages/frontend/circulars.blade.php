@@ -18,6 +18,7 @@
                 
                 @php
                     $circulars = [
+                        ['title' => 'SHA Update and List of Empannelled Facilities', 'url' => 'assets/documents/SHA UPDATE AND LIST OF EMPANNELLED FACILITIES.pdf'],
                         ['title' => 'Amendments to BBF By-Laws', 'url' => 'assets/images/circulars/amendments-to-bbf-by-laws.jpg'],
                         ['title' => 'Handing Over Notice', 'url' => 'assets/images/circulars/handing-over-notice.jpg'],
                         ['title' => 'Nomination of Women Representatives to BEC', 'url' => 'assets/images/circulars/nomination-of-women-representatives-to-bec.jpg'],
