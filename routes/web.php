@@ -22,6 +22,8 @@ Route::view('/bbf/by-laws-comparison', 'pages.frontend.welfare-reform-brief')->n
 Route::view('/teacher-mental-health-awareness', 'pages.frontend.mental-health')->name('mental.health');
 Route::view('/tsc/regulation-20-proposal', 'pages.frontend.tsc-regulation-20')->name('tsc.regulation20');
 Route::view('/press-statements', 'pages.frontend.press-statements')->name('press.statements');
+Route::view('/news/kuppet-homabay-graces-nyanza-term-2-regional-championship', 'pages.frontend.nyanza-championships')
+    ->name('report.nyanza-championships');
 
 Route::prefix('bec-office')->group(function () {
     Route::get('/', [OfficialsController::class, 'index'])->name('bec.officials');
