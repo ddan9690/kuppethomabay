@@ -56,6 +56,7 @@ class YouthfulTeacherController extends Controller
         // 3. Save
         $teacher = YouthfulTeacher::create($validated);
 
-        return redirect('/')->with('swal_success', "Thank you {$teacher->full_name} for participating in this KUPPET Homa-Bay Youthful Teachers Database 2026.");
+        // 4. Redirect back to the registration page to ensure the SweetAlert triggers correctly
+        return back()->with('swal_success', "Thank you {$teacher->full_name} for participating in this KUPPET Homa-Bay Youthful Teachers Database 2026.");
     }
 }

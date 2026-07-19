@@ -111,24 +111,23 @@
     </div>
 </section>
 
-{{-- SweetAlert Scripts --}}
+{{-- SweetAlert Script with Auto-Redirect --}}
 <script>
-    @if(session('swal_info'))
-        Swal.fire({
-            icon: 'info',
-            title: 'Registration Status',
-            text: '{{ session('swal_info') }}',
-            confirmButtonColor: '#059669'
-        });
-    @endif
-
-    @if(session('swal_success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Registration Successful',
-            text: '{{ session('swal_success') }}',
-            confirmButtonColor: '#059669'
-        });
-    @endif
+    document.addEventListener('DOMContentLoaded', () => {
+        @if(session('swal_success') || session('swal_info'))
+            Swal.fire({
+                icon: '{{ session('swal_success') ? 'success' : 'info' }}',
+                title: '{{ session('swal_success') ? 'Registration Successful' : 'Notice' }}',
+                text: '{{ session('swal_success') ?? session('swal_info') }}',
+                confirmButtonColor: '#059669',
+                allowOutsideClick: false // Forces the user to click the button
+            }).then((result) => {
+                // This block runs after the user clicks the "OK" button
+                if (result.isConfirmed) {
+                    window.location.href = '/';
+                }
+            });
+        @endif
+    });
 </script>
 @endsection
