@@ -14,6 +14,14 @@ class YouthfulTeacherController extends Controller
         return view('pages.backend.youthful-teachers', compact('teachers'));
     }
 
+    public function create()
+    {
+
+        $subCounties = SubCounty::all();
+
+        return view('pages.frontend.youthful-teachers', compact('subCounties'));
+    }
+
     // Process the registration submission
     public function store(Request $request)
     {
@@ -50,5 +58,4 @@ class YouthfulTeacherController extends Controller
 
         return redirect('/')->with('swal_success', "Thank you {$teacher->full_name} for participating in this KUPPET Homa-Bay Youthful Teachers Database 2026.");
     }
-
 }
