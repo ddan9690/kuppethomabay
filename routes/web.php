@@ -12,6 +12,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OfficialsController;
 use App\Http\Controllers\PdfDownloadController;
 use App\Http\Controllers\SubCountyBbfRepController;
+use App\Http\Controllers\YouthfulTeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -48,6 +49,9 @@ Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/bbf/register', [BbfMembershipController::class, 'create'])->name('bbf.register');
 Route::post('/bbf/register', [BbfMembershipController::class, 'store'])->name('bbf.register.store');
 
+Route::get('/kuppet-homabay-youthful-teachers-database-2026', [YouthfulTeacherController::class, 'create'])->name('youthful-teachers.create');
+Route::post('/youthful-teachers', [YouthfulTeacherController::class, 'store'])->name('youthful-teachers.store');
+
 Route::get('/agency-payer', [AgencyPayerController::class, 'create'])->name('agency_payer.create');
 Route::post('/agency-payer', [AgencyPayerController::class, 'store'])->name('agency_payer.store');
 
@@ -82,6 +86,11 @@ Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->
         Route::post('members/{id}/approve', [BbfMembershipController::class, 'approve'])->name('bbf.members.approve');
         Route::post('members/{id}/reject', [BbfMembershipController::class, 'reject'])->name('bbf.members.reject');
         Route::get('applications/pdf', [PdfDownloadController::class, 'bbfPendingApplications'])->name('bbf.applications.pending.pdf');
+        Route::get('/youthful-teachers/pdf', [PdfDownloadController::class, 'youthfulTeachers'])->name('youthful-teachers.pdf');
+    });
+
+    Route::prefix('admin/youthful-teachers')->group(function () {
+        Route::get('/', [YouthfulTeacherController::class, 'index'])->name('youthful-teachers.index');
     });
 
     Route::prefix('sha-reports')->group(function () {

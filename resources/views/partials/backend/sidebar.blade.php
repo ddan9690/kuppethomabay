@@ -45,6 +45,11 @@
                 <i class='bx bx-user'></i> Agency Payers
             </a>
 
+            <a href="{{ route('youthful-teachers.index') }}"
+                class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
+                <i class='bx bx-group'></i> Youthful Teachers
+            </a>
+
             {{-- BBF --}}
             <div>
                 <button @click="bbfOpen = !bbfOpen" class="w-full flex justify-between p-2 rounded hover:bg-green-dark">

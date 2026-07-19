@@ -6,6 +6,7 @@ use App\Models\AgencyPayer;
 use App\Models\BbfMembership;
 use App\Models\FacilityExperience;
 use App\Models\Feedback;
+use App\Models\YouthfulTeacher;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -61,5 +62,17 @@ class PdfDownloadController extends Controller
         );
 
         return $pdf->download('sha_facility_reports_' . now()->format('Y-m-d') . '.pdf');
+    }
+
+    public function youthfulTeachers()
+    {
+        $teachers = YouthfulTeacher::with('subCounty')->latest()->get();
+
+        $pdf = Pdf::loadView(
+            'pages.backend.youthful-teachers-pdf',
+            compact('teachers')
+        );
+
+        return $pdf->download('youthful_teachers_database_2026_' . now()->format('Y-m-d') . '.pdf');
     }
 }
