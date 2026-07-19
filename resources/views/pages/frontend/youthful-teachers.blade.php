@@ -120,9 +120,9 @@
                 title: '{{ session('swal_success') ? 'Registration Successful' : 'Notice' }}',
                 text: '{{ session('swal_success') ?? session('swal_info') }}',
                 confirmButtonColor: '#059669',
-                allowOutsideClick: false // Forces the user to click the button
+                allowOutsideClick: false,
+                footer: '<div style="font-size: 0.8em; color: #666;">Office of the 3rd Assistant Secretary (Gender), KUPPET Homa-Bay Branch</div>'
             }).then((result) => {
-                // This block runs after the user clicks the "OK" button
                 if (result.isConfirmed) {
                     window.location.href = '/';
                 }
