@@ -38,6 +38,21 @@ class UsersSeeder extends Seeder
         );
         $organisingSecretary->assignRole('organising-secretary');
 
+        // Add Ann Blessing
+        $ann = User::firstOrCreate(
+            ['email' => 'annblessing@kuppethomabay'],
+            [
+                'salutation' => 'Mrs.',
+                'name' => 'Ann Blessing',
+                'phone' => '0790407571',
+                'tsc_no' => null,
+                'password' => Hash::make('kuppethomabay'),
+                'active' => true,
+                'email_verified_at' => now(),
+            ]
+        );
+        $ann->assignRole('executive');
+
         $executives = [
             [
                 'email' => 'tom@kuppethomabay',
