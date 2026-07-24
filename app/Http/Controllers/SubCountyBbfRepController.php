@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SubCounty;
+use App\Models\SubCountyBbfRep;
 use App\Services\SubCountyBbfRepService;
 use Illuminate\Http\Request;
 
@@ -64,18 +65,12 @@ class SubCountyBbfRepController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function destroy(SubCountyBbfRep $subCountyBbfRep)
     {
-        //
-    }
+        $subCountyBbfRep->delete();
 
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect()->route('sub_county_bbf_reps.index')
+            ->with('success', 'Sub-County BBF Rep removed successfully.');
     }
-
-    public function delete($id)
-    {
-        //
-    }
+  
 }

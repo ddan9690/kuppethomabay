@@ -34,6 +34,7 @@
                         <th class="p-1.5 sm:p-2 border text-left">Sub-County</th>
                         <th class="p-1.5 sm:p-2 border text-left">Level</th>
                         <th class="p-1.5 sm:p-2 border text-left">Phone</th>
+                        <th class="p-1.5 sm:p-2 border text-center">Actions</th>
                     </tr>
                 </thead>
 
@@ -62,10 +63,20 @@
                                 {{ $rep->user->phone ?? '-' }}
                             </td>
 
+                            <td class="p-1.5 sm:p-2 border text-center">
+                                <form action="{{ route('sub_county_bbf_reps.destroy', $rep->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to remove this representative?');" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red text-white px-2.5 py-1 rounded hover:opacity-90 transition text-xs font-semibold">
+                                        Remove
+                                    </button>
+                                </form>
+                            </td>
+
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="p-4 text-center text-gray-500 text-xs sm:text-sm">
+                            <td colspan="6" class="p-4 text-center text-gray-dark text-xs sm:text-sm">
                                 No sub-county BBF reps found.
                             </td>
                         </tr>
