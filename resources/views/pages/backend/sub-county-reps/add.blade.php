@@ -52,12 +52,12 @@
 
             <!-- User LAST -->
             <div>
-                <label class="block mb-1 font-medium text-gray-700">Select User</label>
+                <label class="block mb-1 font-medium text-gray-700">Select Representative</label>
                 <select x-model="form.user_id" class="w-full border border-gray-300 p-2 rounded">
-                    <option value="">-- Choose User --</option>
+                    <option value=""></option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">
-                            {{ ($user->salutation ?? '') . ' ' . $user->name }}
+                            {{ $user->name }}
                         </option>
                     @endforeach
                 </select>
@@ -119,10 +119,12 @@ function bbfRepForm() {
 
                 this.successMessage = data.message;
 
-                // reset form
-                this.form.sub_county_id = '';
-                this.form.level = '';
-                this.form.user_id = '';
+                // Handle redirect if provided by backend
+                if (data.redirect) {
+                    setTimeout(() => {
+                        window.location.href = data.redirect;
+                    }, 1000);
+                }
             })
             .catch(() => {
                 this.loading = false;

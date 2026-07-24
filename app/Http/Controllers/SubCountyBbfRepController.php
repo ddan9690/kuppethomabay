@@ -24,8 +24,8 @@ class SubCountyBbfRepController extends Controller
 
     public function add()
     {
-        $users = $this->service->getAvailableUsers();
-        $subCounties = SubCounty::all();
+        $users = $this->service->getAvailableUsers()->sortBy('name')->values();
+        $subCounties = SubCounty::orderBy('name', 'asc')->get();
 
         return view('pages.backend.sub-county-reps.add', compact('users', 'subCounties'));
     }
