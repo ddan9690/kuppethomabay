@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Dashboard') | KUPPET Homabay</title>
 
-        {{-- FAVICONS --}}
+    {{-- FAVICONS --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon_io/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16"
         href="{{ asset('assets/images/favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/images/favicon_io/site.webmanifest') }}">
@@ -31,49 +30,49 @@
     @stack('styles')
 </head>
 
-<body class="bg-gray-100 font-sans min-h-screen overflow-x-hidden"
-      x-data="{ sidebarOpen: false }">
+<body class="bg-gray-100 font-sans min-h-screen overflow-x-hidden" x-data="{ sidebarOpen: false }">
 
-<div class="flex min-h-screen">
+    <div class="flex min-h-screen">
 
-    {{-- Sidebar --}}
-    @include('partials.backend.sidebar')
+        {{-- Sidebar --}}
+        @include('partials.backend.sidebar')
 
-    {{-- Main --}}
-    <div class="flex-1 flex flex-col min-w-0">
+        {{-- Main --}}
+        <div class="flex-1 flex flex-col min-w-0">
 
-        {{-- Topbar --}}
-        @include('partials.backend.navigation')
+            {{-- Topbar --}}
+            @include('partials.backend.navigation')
 
-        {{-- Content --}}
-        <main class="flex-1 p-4 md:p-6 overflow-x-auto">
-            @yield('content')
-        </main>
+            {{-- Content --}}
+            <main class="flex-1 p-4 md:p-6 overflow-x-auto">
+                @yield('content')
+            </main>
 
-        {{-- Footer --}}
-        @include('partials.backend.footer')
+            {{-- Footer --}}
+            @include('partials.backend.footer')
+
+        </div>
 
     </div>
 
-</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @stack('scripts')
 
-@stack('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('.datatable').DataTable();
+        });
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('.datatable').DataTable();
-    });
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
 
-    @if(session('success'))
-        toastr.success("{{ session('success') }}");
-    @endif
-
-    @if(session('error'))
-        toastr.error("{{ session('error') }}");
-    @endif
-</script>
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    </script>
 
 </body>
+
 </html>

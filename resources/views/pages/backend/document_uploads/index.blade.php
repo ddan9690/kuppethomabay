@@ -32,7 +32,8 @@
     <div class="bg-white rounded-lg shadow p-4 sm:p-6 border border-gray-200">
         <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-4">Upload New Document</h2>
 
-        <form action="{{ route('admin.document_uploads.store') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+        <form action="{{ route('admin.document_uploads.store') }}" method="POST" enctype="multipart/form-data" 
+              x-data="{ submitting: false }" @submit="submitting = true" class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             @csrf
 
             <div>
@@ -59,8 +60,12 @@
             </div>
 
             <div class="md:col-span-3 flex justify-end mt-2">
-                <button type="submit" class="bg-green text-white px-5 sm:px-6 py-2 rounded-md font-semibold text-xs sm:text-sm hover:bg-green-dark transition">
-                    Upload & Publish
+                <button type="submit" 
+                        :disabled="submitting"
+                        :class="submitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-green-dark'"
+                        class="bg-green text-white px-5 sm:px-6 py-2 rounded-md font-semibold text-xs sm:text-sm transition flex items-center gap-2">
+                    <span x-show="submitting" class="inline-block animate-spin">&#9696;</span>
+                    <span x-text="submitting ? 'Publishing...' : 'Upload & Publish'"></span>
                 </button>
             </div>
         </form>
