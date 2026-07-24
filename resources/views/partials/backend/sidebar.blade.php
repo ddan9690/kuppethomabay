@@ -41,6 +41,11 @@
                 <i class='bx bx-home'></i> Dashboard
             </a>
 
+            {{-- Users Management --}}
+            <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
+                <i class='bx bx-user-circle'></i> Users
+            </a>
+
             <a href="{{ route('agency_payer.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
                 <i class='bx bx-user'></i> Agency Payers
             </a>
@@ -82,7 +87,7 @@
                 <i class='bx bx-news'></i> Manage News
             </a>
 
-            {{-- Document Management (NEW) --}}
+            {{-- Document Management --}}
             <a href="{{ route('admin.document_uploads.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
                 <i class='bx bx-file-blank'></i> Document Management
             </a>

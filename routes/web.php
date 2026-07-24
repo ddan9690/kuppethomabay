@@ -29,7 +29,7 @@ Route::view('/press-statements', 'pages.frontend.press-statements')->name('press
 Route::view('/news/kuppet-homabay-graces-nyanza-term-2-regional-championship', 'pages.frontend.nyanza-championships')
     ->name('report.nyanza-championships');
 
-    
+
 Route::prefix('bec-office')->group(function () {
     Route::get('/', [OfficialsController::class, 'index'])->name('bec.officials');
     Route::get('/profile/executive-secretary/thomas-odhiambo', [OfficialsController::class, 'thomasOdhiambo'])->name('profile.thomas_odhiambo');
@@ -91,7 +91,8 @@ Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->
         Route::post('members/{id}/reject', [BbfMembershipController::class, 'reject'])->name('bbf.members.reject');
         Route::get('applications/pdf', [PdfDownloadController::class, 'bbfPendingApplications'])->name('bbf.applications.pending.pdf');
         Route::get('/youthful-teachers/pdf', [PdfDownloadController::class, 'youthfulTeachers'])->name('youthful-teachers.pdf');
-    });
+        Route::get('/users', [DashboardController::class, 'users'])->name('admin.users.index');
+        });
 
     Route::prefix('admin/youthful-teachers')->group(function () {
         Route::get('/', [YouthfulTeacherController::class, 'index'])->name('youthful-teachers.index');
