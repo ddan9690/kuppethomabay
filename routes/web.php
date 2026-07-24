@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BbfMembershipController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DocumentUploadController;
 use App\Http\Controllers\FacilityExperienceController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
@@ -16,9 +17,11 @@ use App\Http\Controllers\YouthfulTeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
-Route::view('/downloads', 'pages.frontend.downloads')->name('downloads');
-Route::view('/bec-circulars', 'pages.frontend.circulars')->name('circulars');
-Route::view('/petitions-memoranda', 'pages.frontend.memoranda-and-petitions')->name('petitions.memoranda');
+Route::get('/downloads', [HomeController::class, 'downloads'])->name('downloads');
+Route::get('/bec-circulars', [HomeController::class, 'circulars'])->name('circulars');
+Route::get('/petitions-memoranda', [HomeController::class, 'memoranda'])->name('petitions.memoranda');
+Route::get('/documents/{documentUpload}/download', [HomeController::class, 'downloadDocument'])->name('documents.download');
+
 Route::view('/bbf/by-laws-comparison', 'pages.frontend.welfare-reform-brief')->name('bbf.by-laws.comparison');
 Route::view('/teacher-mental-health-awareness', 'pages.frontend.mental-health')->name('mental.health');
 Route::view('/tsc/regulation-20-proposal', 'pages.frontend.tsc-regulation-20')->name('tsc.regulation20');
@@ -26,6 +29,7 @@ Route::view('/press-statements', 'pages.frontend.press-statements')->name('press
 Route::view('/news/kuppet-homabay-graces-nyanza-term-2-regional-championship', 'pages.frontend.nyanza-championships')
     ->name('report.nyanza-championships');
 
+    
 Route::prefix('bec-office')->group(function () {
     Route::get('/', [OfficialsController::class, 'index'])->name('bec.officials');
     Route::get('/profile/executive-secretary/thomas-odhiambo', [OfficialsController::class, 'thomasOdhiambo'])->name('profile.thomas_odhiambo');
@@ -113,6 +117,14 @@ Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->
         Route::get('{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
         Route::put('{news}', [NewsController::class, 'update'])->name('admin.news.update');
         Route::delete('{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+    });
+
+
+    Route::prefix('admin/document-uploads')->name('admin.document_uploads.')->middleware(['auth', 'role:executive|organising-secretary|super-admin'])->group(function () {
+        Route::get('/', [DocumentUploadController::class, 'index'])->name('index');
+        Route::post('/', [DocumentUploadController::class, 'store'])->name('store');
+        Route::get('/{documentUpload}/download', [DocumentUploadController::class, 'download'])->name('download');
+        Route::delete('/{documentUpload}', [DocumentUploadController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('admin')->group(function () {

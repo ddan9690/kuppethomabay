@@ -25,7 +25,7 @@
             KUPPET Homabay
         </div>
 
-        {{-- 🔥 QUICK ACCESS HOME (NEW) --}}
+        {{-- 🔥 QUICK ACCESS HOME --}}
         <div class="px-4 pt-3">
             <a href="{{ url('/') }}"
                 class="flex items-center gap-3 p-2 rounded bg-green-dark hover:bg-green-700 transition">
@@ -82,8 +82,13 @@
                 <i class='bx bx-news'></i> Manage News
             </a>
 
+            {{-- Document Management (NEW) --}}
+            <a href="{{ route('admin.document_uploads.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
+                <i class='bx bx-file-blank'></i> Document Management
+            </a>
+
             <a href="{{ route('feedback.index') }}" class="flex items-center gap-3 p-2 rounded hover:bg-green-dark">
-                <i class='bx bx-message-square-detail'></i>View Feedbacks
+                <i class='bx bx-message-square-detail'></i> View Feedbacks
             </a>
 
         </nav>
