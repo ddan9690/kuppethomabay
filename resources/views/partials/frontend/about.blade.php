@@ -10,7 +10,7 @@
         <p class="text-gray-dark text-lg md:text-xl mb-6 leading-relaxed">
             KUPPET, the Kenya Union of Post Primary Education Teachers, was founded as both a trade union and a professional organization. 
             Our mission is to unite all post-primary teachers in Kenya, safeguard their welfare, and promote professional growth. 
-            The Homabay branch is committed to driving positive change, advocating for teachers’ rights, and fostering excellence in education.
+            The Homabay branch is fiercely committed to working for teachers, agitating for their rights, standing as a strong defense against exploitation, and fostering excellence in education.
         </p>
 
         {{-- Call to Action --}}
@@ -22,7 +22,7 @@
         <div class="border-t border-gray my-8 max-w-md mx-auto md:mx-0"></div>
 
         {{-- Link to TSC Regulation 20 Page --}}
-        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red max-w-md mx-auto md:mx-0">
+        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red max-w-md mx-auto md:mx-0 mb-8">
             <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">⚠️ Important Notice for Members</p>
             <h3 class="text-xl font-bold text-gray-dark mb-2">TSC Regulation 20 Proposed Changes</h3>
             <p class="text-gray-dark mb-4">
@@ -34,6 +34,16 @@
                 📖 Read Full Notice
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+
+        {{-- Button to CBA Implementation Status --}}
+        <div>
+            <a href="{{ route('cba.status-2025-2029') }}" class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-6 py-3 rounded-lg font-bold shadow-md transition">
+                📊 Update to Members on the Status of Implementation of the 2025-2029 CBA
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
             </a>
         </div>

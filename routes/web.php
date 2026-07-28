@@ -28,6 +28,8 @@ Route::view('/tsc/regulation-20-proposal', 'pages.frontend.tsc-regulation-20')->
 Route::view('/press-statements', 'pages.frontend.press-statements')->name('press.statements');
 Route::view('/news/kuppet-homabay-graces-nyanza-term-2-regional-championship', 'pages.frontend.nyanza-championships')
     ->name('report.nyanza-championships');
+Route::view('/cba-2025-2029-status', 'pages.frontend.cba-status-2025-2029')
+    ->name('cba.status-2025-2029');
 
 
 Route::prefix('bec-office')->group(function () {
@@ -92,7 +94,7 @@ Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->
         Route::get('applications/pdf', [PdfDownloadController::class, 'bbfPendingApplications'])->name('bbf.applications.pending.pdf');
         Route::get('/youthful-teachers/pdf', [PdfDownloadController::class, 'youthfulTeachers'])->name('youthful-teachers.pdf');
         Route::get('/users', [DashboardController::class, 'users'])->name('admin.users.index');
-        });
+    });
 
     Route::prefix('admin/youthful-teachers')->group(function () {
         Route::get('/', [YouthfulTeacherController::class, 'index'])->name('youthful-teachers.index');
