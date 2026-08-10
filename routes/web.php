@@ -59,8 +59,8 @@ Route::post('/bbf/register', [BbfMembershipController::class, 'store'])->name('b
 Route::get('/kuppet-homabay-youthful-teachers-database-2026', [YouthfulTeacherController::class, 'create'])->name('youthful-teachers.create');
 Route::post('/youthful-teachers', [YouthfulTeacherController::class, 'store'])->name('youthful-teachers.store');
 
-Route::get('/sha-chronic-illness-feedback', [ChronicIllnessInfoController::class, 'create'])->name('chronic-illness-infos.create');
-Route::post('/sha-chronic-illness-feedback', [ChronicIllnessInfoController::class, 'store'])->name('chronic-illness-infos.store');
+Route::get('/KUPEPT-Homabay-SHA-chronic-illness-challenges-feedback', [ChronicIllnessInfoController::class, 'create'])->name('chronic-illness-infos.create');
+Route::post('/KUPEPT-Homabay-SHA-chronic-illness-challenges-feedback', [ChronicIllnessInfoController::class, 'store'])->name('chronic-illness-infos.store');
 
 Route::get('/agency-payer', [AgencyPayerController::class, 'create'])->name('agency_payer.create');
 Route::post('/agency-payer', [AgencyPayerController::class, 'store'])->name('agency_payer.store');
