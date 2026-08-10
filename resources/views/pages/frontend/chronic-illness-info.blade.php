@@ -68,7 +68,7 @@
             <button type="submit" 
                     class="bg-green hover:bg-green-dark text-white w-full py-4 rounded font-bold text-lg transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed" 
                     x-bind:disabled="submitting" 
-                    x-text="submitting ? 'Submitting Feedback...' : 'Submit Anonymous Feedback'">
+                    x-text="submitting ? 'Submitting...' : 'Submit Feedback'">
             </button>
 
             {{-- Bottom Assurance Note --}}
