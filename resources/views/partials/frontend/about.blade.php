@@ -38,14 +38,27 @@
             </a>
         </div>
 
-        {{-- Button to CBA Implementation Status --}}
-        <div>
-            <a href="{{ route('cba.status-2025-2029') }}" class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-6 py-3 rounded-lg font-bold shadow-md transition">
-                📊 Update to Members on the Status of Implementation of the 2025-2029 CBA
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-            </a>
+        {{-- Action Cards / Buttons Grid --}}
+        <div class="flex flex-col md:flex-row flex-wrap gap-4 items-start">
+            {{-- Button to CBA Implementation Status --}}
+            <div>
+                <a href="{{ route('cba.status-2025-2029') }}" class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-6 py-3 rounded-lg font-bold shadow-md transition">
+                    📊 Update to Members on the Status of Implementation of the 2025-2029 CBA
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
+
+            {{-- Button for Medical Scheme Chronic Illness Issues Collection --}}
+            <div>
+                <a href="{{ route('chronic-illness-infos.create') }}" class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-6 py-3 rounded-lg font-bold shadow-md transition">
+                    🏥 Collection of Teachers Medical Scheme Issues: Chronic Disease Management & Medication
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
 
     </div>
