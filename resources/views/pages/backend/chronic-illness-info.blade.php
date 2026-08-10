@@ -51,7 +51,7 @@
                     @empty
                         <tr>
                             <td colspan="5" class="p-4 border text-center text-gray-500">
-                                No anonymous reports found.
+                                No feedback received
                             </td>
                         </tr>
                     @endforelse
