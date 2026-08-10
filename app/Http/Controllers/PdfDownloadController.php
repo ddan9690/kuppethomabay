@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AgencyPayer;
 use App\Models\BbfMembership;
+use App\Models\ChronicIllnessInfo;
 use App\Models\FacilityExperience;
 use App\Models\Feedback;
 use App\Models\YouthfulTeacher;
@@ -26,7 +27,6 @@ class PdfDownloadController extends Controller
 
     public function bbfPendingApplications()
     {
-
         $applications = BbfMembership::with('subCounty')
             ->where('status', 'Pending')
             ->latest()
@@ -49,7 +49,6 @@ class PdfDownloadController extends Controller
         return $pdf->download('teacher_feedback_' . now()->format('Y-m-d') . '.pdf');
     }
 
-
     public function shaFacilityReports()
     {
         $reports = FacilityExperience::with('subCounty')
@@ -62,6 +61,20 @@ class PdfDownloadController extends Controller
         );
 
         return $pdf->download('sha_facility_reports_' . now()->format('Y-m-d') . '.pdf');
+    }
+
+    public function chronicIllnessReports()
+    {
+        $reports = ChronicIllnessInfo::with('subCounty')
+            ->latest()
+            ->get();
+
+        $pdf = Pdf::loadView(
+            'pages.backend.chronic-illness-reports-pdf',
+            compact('reports')
+        );
+
+        return $pdf->download('sha_chronic_illness_reports_' . now()->format('Y-m-d') . '.pdf');
     }
 
     public function youthfulTeachers()

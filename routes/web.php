@@ -139,5 +139,8 @@ Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->
         Route::get('feedback/pdf', [PdfDownloadController::class, 'feedback'])->name('feedback.pdf');
         Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
         Route::get('/admin/facility-experiences', [FacilityExperienceController::class, 'index'])->name('facility_experience.index');
-    });
+
+        Route::get('/sha-chronic-illness-reports', [ChronicIllnessInfoController::class, 'index'])->name('chronic-illness-infos.index');
+        Route::get('/sha-chronic-illness-reports/pdf', [PdfDownloadController::class, 'chronicIllnessReports'])->name('chronic-illness.pdf');
+        });
 });

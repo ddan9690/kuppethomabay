@@ -12,16 +12,13 @@
                 <h2 class="text-2xl md:text-3xl font-bold text-green">
                     SHA Chronic Illness Service Access Reports
                 </h2>
-                <p class="text-xs text-gray-500 mt-1">Anonymous feedback tracking challenges encountered by teachers under the Social Health Authority.</p>
             </div>
 
-            {{-- Download PDF Button (Optional if you have a PDF route) --}}
-            {{-- 
+            {{-- Download PDF Button --}}
             <a href="{{ route('chronic-illness.pdf') }}" 
-               class="bg-green text-white px-4 py-2 rounded hover:bg-green-dark transition">
-                Download PDF
+               class="bg-green text-white px-4 py-2 rounded hover:bg-green-dark transition inline-flex items-center gap-2">
+                📥 Download PDF
             </a>
-            --}}
         </div>
 
         {{-- Table --}}
