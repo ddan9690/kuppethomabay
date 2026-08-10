@@ -26,11 +26,11 @@
             <table class="w-full table-auto border border-gray-300">
                 <thead class="bg-green text-white">
                     <tr>
-                        <th class="p-2 border">#</th>
-                        <th class="p-2 border">Sub-County</th>
-                        <th class="p-2 border">Affected Party</th>
+                        <th class="p-2 border w-12 text-center">#</th>
+                        <th class="p-2 border w-36">Sub-County</th>
+                        <th class="p-2 border w-36">Affected Party</th>
                         <th class="p-2 border">Experience / Challenges</th>
-                        <th class="p-2 border">Submitted On</th>
+                        <th class="p-2 border w-40 whitespace-nowrap">Submitted On</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,8 +43,8 @@
                                     {{ $record->affected_party }}
                                 </span>
                             </td>
-                            <td class="p-2 border text-sm max-w-md">
-                                <div class="line-clamp-3">{{ $record->experience_description }}</div>
+                            <td class="p-2 border text-sm">
+                                <div class="whitespace-normal break-words">{{ $record->experience_description }}</div>
                             </td>
                             <td class="p-2 border whitespace-nowrap">{{ $record->created_at->format('d M Y, H:i') }}</td>
                         </tr>
