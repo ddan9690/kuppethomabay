@@ -3,59 +3,130 @@
 <head>
     <meta charset="utf-8">
     <title>SHA Chronic Illness Service Access Reports</title>
+
     <style>
-        body { font-family: sans-serif; font-size: 9px; }
-        .header { text-align: center; margin-bottom: 15px; }
-        .header img { width: 60px; height: auto; }
-        .header h1 { color: #008C45; font-size: 14px; margin: 5px 0 0 0; text-transform: uppercase; }
-        .header h3 { font-size: 10px; margin: 2px 0; font-weight: normal; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed; }
-        th, td { border: 1px solid #ccc; padding: 4px; text-align: left; vertical-align: top; word-wrap: break-word; overflow-wrap: break-word; }
-        th { background-color: #f4f4f4; text-transform: uppercase; }
-        
-        /* Column sizing */
-        .col-index { width: 25px; text-align: center; }
-        .col-subcounty { width: 80px; }
-        .col-party { width: 65px; }
-        .col-date { width: 70px; }
-        
-        .footer-date { text-align: right; font-style: italic; font-size: 7px; margin-top: 10px; }
+        @page {
+            size: A4 landscape;
+            margin: 15px;
+        }
+
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 11px;
+            color: #000;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .header img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin: 0;
+            color: #008C45;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 6px;
+            vertical-align: top;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        th {
+            background-color: #008C45;
+            color: white;
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        /* =========================
+            COLUMN WIDTH CONTROL
+        ========================== */
+        .col-no { width: 4%; text-align: center; white-space: nowrap; }
+        .col-subcounty { width: 16%; }
+        .col-party { width: 15%; }
+        .col-experience { width: 48%; white-space: normal; }
+        .col-date { width: 17%; white-space: nowrap; }
     </style>
 </head>
+
 <body>
 
+    {{-- HEADER --}}
     <div class="header">
         <img src="{{ public_path('assets/images/kuppet-logo.png') }}" alt="KUPPET Logo">
-        <h1>KUPPET Homa-Bay Branch</h1>
-        <h3>SHA Chronic Illness Service Access Reports</h3>
+        <h2>KUPPET Homa-Bay Branch</h2>
+        <div class="subtitle">
+            SHA Chronic Illness Service Access Reports
+        </div>
     </div>
 
+    {{-- TABLE --}}
     <table>
         <thead>
             <tr>
-                <th class="col-index">#</th>
+                <th class="col-no">#</th>
                 <th class="col-subcounty">Sub-County</th>
                 <th class="col-party">Affected Party</th>
-                <th>Experience / Challenges Faced</th>
+                <th class="col-experience">Experience / Challenges</th>
                 <th class="col-date">Submitted On</th>
             </tr>
         </thead>
+
         <tbody>
-            @foreach($reports as $index => $report)
+            @forelse($reports as $index => $report)
                 <tr>
-                    <td class="col-index">{{ $index + 1 }}</td>
-                    <td>{{ $report->subCounty->name ?? '-' }}</td>
-                    <td>{{ $report->affected_party }}</td>
-                    <td>{{ $report->experience_description }}</td>
-                    <td>{{ $report->created_at->format('d/m/Y H:i') }}</td>
+                    <td class="col-no">{{ $index + 1 }}</td>
+                    <td class="col-subcounty">{{ $report->subCounty->name ?? '-' }}</td>
+                    <td class="col-party">{{ $report->affected_party }}</td>
+                    <td class="col-experience">{{ $report->experience_description }}</td>
+                    <td class="col-date">{{ $report->created_at->format('d M Y, H:i') }}</td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="5" style="text-align:center; padding: 10px;">
+                        No feedback received
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 
-    <div class="footer-date">
-        Generated on: {{ now()->format('d/m/Y H:i') }}
+    {{-- FOOTER --}}
+    <div class="footer">
+        Generated by KUPPET Homabay System • {{ now()->format('d M Y H:i') }}
     </div>
 
 </body>

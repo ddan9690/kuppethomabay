@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>BBF Membership Applications</title>
+    <title>SHA Chronic Illness Service Access Reports</title>
 
     <style>
         @page {
@@ -30,6 +30,8 @@
         h2 {
             font-size: 16px;
             margin: 0;
+            color: #008C45;
+            text-transform: uppercase;
         }
 
         .subtitle {
@@ -46,15 +48,17 @@
 
         th, td {
             border: 1px solid #000;
-            padding: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            padding: 6px;
+            vertical-align: top;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         th {
             background-color: #008C45;
             color: white;
+            text-transform: uppercase;
+            font-size: 10px;
         }
 
         tbody tr:nth-child(even) {
@@ -67,24 +71,14 @@
             text-align: center;
         }
 
-        .uppercase-text {
-            text-transform: uppercase;
-        }
-
         /* =========================
-           COLUMN WIDTH CONTROL
+            COLUMN WIDTH CONTROL
         ========================== */
-
-        .col-no { width: 3%; }
-        .col-name { width: 12%; }
-        .col-tsc { width: 8%; }
-        .col-school { width: 14%; }
-        .col-zone { width: 10%; }
-        .col-subcounty { width: 12%; }
-        .col-phone { width: 10%; }
-        .col-category { width: 9%; }
-        .col-status { width: 8%; }
-        .col-date { width: 14%; }
+        .col-no { width: 4%; text-align: center; white-space: nowrap; }
+        .col-subcounty { width: 16%; }
+        .col-party { width: 15%; }
+        .col-experience { width: 48%; white-space: normal; }
+        .col-date { width: 17%; white-space: nowrap; }
     </style>
 </head>
 
@@ -93,11 +87,9 @@
     {{-- HEADER --}}
     <div class="header">
         <img src="{{ public_path('assets/images/kuppet-logo.png') }}" alt="KUPPET Logo">
-
-        <h2>HOMA BAY KUPPET BBF APPLICATIONS</h2>
-
+        <h2>KUPPET Homa-Bay Branch</h2>
         <div class="subtitle">
-            Pending Membership Applications Report
+            SHA Chronic Illness Service Access Reports
         </div>
     </div>
 
@@ -106,74 +98,26 @@
         <thead>
             <tr>
                 <th class="col-no">#</th>
-                <th class="col-name">Full Name</th>
-                <th class="col-tsc">TSC No</th>
-                <th class="col-school">School</th>
-                <th class="col-zone">Zone</th>
-                <th class="col-subcounty">Sub County</th>
-                <th class="col-phone">Phone</th>
-                <th class="col-category">Category</th>
-                <th class="col-status">Status</th>
+                <th class="col-subcounty">Sub-County</th>
+                <th class="col-party">Affected Party</th>
+                <th class="col-experience">Experience / Challenges</th>
                 <th class="col-date">Submitted On</th>
             </tr>
         </thead>
 
         <tbody>
-            @forelse($applications as $index => $app)
+            @forelse($reports as $index => $report)
                 <tr>
-
                     <td class="col-no">{{ $index + 1 }}</td>
-
-                    {{-- NAME --}}
-                    <td class="col-name uppercase-text">
-                        {{ $app->full_name }}
-                    </td>
-
-                    {{-- TSC --}}
-                    <td class="col-tsc">
-                        {{ $app->tsc_number }}
-                    </td>
-
-                    {{-- SCHOOL --}}
-                    <td class="col-school">
-                        {{ $app->school_name }}
-                    </td>
-
-                    {{-- ZONE --}}
-                    <td class="col-zone">
-                        {{ $app->zone }}
-                    </td>
-
-                    {{-- SUB COUNTY --}}
-                    <td class="col-subcounty">
-                        {{ $app->subCounty->name ?? '-' }}
-                    </td>
-
-                    {{-- PHONE --}}
-                    <td class="col-phone">
-                        {{ $app->phone_number }}
-                    </td>
-
-                    {{-- CATEGORY --}}
-                    <td class="col-category uppercase-text">
-                        {{ $app->category }}
-                    </td>
-
-                    {{-- STATUS --}}
-                    <td class="col-status">
-                        {{ $app->status }}
-                    </td>
-
-                    {{-- DATE --}}
-                    <td class="col-date">
-                        {{ $app->created_at->format('d M Y') }}
-                    </td>
-
+                    <td class="col-subcounty">{{ $report->subCounty->name ?? '-' }}</td>
+                    <td class="col-party">{{ $report->affected_party }}</td>
+                    <td class="col-experience">{{ $report->experience_description }}</td>
+                    <td class="col-date">{{ $report->created_at->format('d M Y, H:i') }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="10" style="text-align:center;">
-                        No applications found
+                    <td colspan="5" style="text-align:center; padding: 10px;">
+                        No feedback received
                     </td>
                 </tr>
             @endforelse
@@ -182,7 +126,7 @@
 
     {{-- FOOTER --}}
     <div class="footer">
-        Generated by KUPPET Homabay BBF System • {{ now()->format('d M Y H:i') }}
+        Generated by KUPPET Homabay System • {{ now()->format('d M Y H:i') }}
     </div>
 
 </body>
