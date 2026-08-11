@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', 'System Users - KUPPET Homabay Branch')
+@section('title', 'Users - KUPPET Homabay Branch')
 
 @section('content')
 <section class="bg-white py-6">

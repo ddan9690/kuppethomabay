@@ -61,8 +61,8 @@
                                 <div class="whitespace-normal break-words">{{ $record->experience_description }}</div>
                             </td>
                             <td class="p-2 border text-center align-top text-xs md:text-sm">
-                                <div>{{ $record->created_at->format('d M Y') }}</div>
-                                <div class="text-gray-500">{{ $record->created_at->format('g:i a') }}</div>
+                                <div>{{ $record->created_at->setTimezone('Africa/Nairobi')->format('d M Y') }}</div>
+                                <div class="text-gray-500">{{ $record->created_at->setTimezone('Africa/Nairobi')->format('g:i a') }}</div>
                             </td>
                         </tr>
                     @empty

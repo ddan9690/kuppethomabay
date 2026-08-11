@@ -115,7 +115,7 @@
                     <td class="col-subcounty">{{ $report->subCounty->name ?? '-' }}</td>
                     <td class="col-party">{{ $report->affected_party }}</td>
                     <td class="col-experience">{{ $report->experience_description }}</td>
-                    <td class="col-date">{{ $report->created_at->format('d M Y, h:i a') }}</td>
+                    <td class="col-date">{{ $report->created_at->setTimezone('Africa/Nairobi')->format('d M Y, h:i a') }}</td>
                 </tr>
             @empty
                 <tr>
@@ -129,7 +129,7 @@
 
     {{-- FOOTER --}}
     <div class="footer">
-        Downloaded on {{ now()->format('d M Y, h:i a') }}
+        Downloaded on {{ now()->setTimezone('Africa/Nairobi')->format('d M Y, h:i a') }}
     </div>
 
 </body>
