@@ -27,10 +27,10 @@
             {{-- Link to KNEC Reimbursements Page --}}
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green flex flex-col justify-between">
                 <div>
-                    <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">📋 Active Portal</p>
-                    <h3 class="text-xl font-bold text-gray-dark mb-2">KNEC Examiner Reimbursements</h3>
+                    <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">📢 KNEC Training</p>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">KNEC Training Reimbursement</h3>
                     <p class="text-gray-dark mb-4 text-sm">
-                        Reimbursement for teachers of Homa Bay who applied and attended KNEC training.
+                        Application for reimbursement of duly registered teachers of KUPPET Homa Bay Branch who applied and attended KNEC training.
                     </p>
                 </div>
                 <div>

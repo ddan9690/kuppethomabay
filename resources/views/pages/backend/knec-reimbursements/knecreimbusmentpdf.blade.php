@@ -6,7 +6,8 @@
 
     <style>
         @page {
-            size: A4 portrait;
+            /* Changed from portrait to landscape */
+            size: A4 landscape;
             margin: 10px;
         }
 
