@@ -2,11 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{ $announcement->title }} - Applications</title>
+    <title>{{ ucwords(strtolower($announcement->title)) }} - Applications</title>
 
     <style>
         @page {
-            /* Changed from portrait to landscape */
             size: A4 landscape;
             margin: 10px;
         }
@@ -40,13 +39,14 @@
             font-size: 12px;
             margin: 0;
             color: #008C45;
-            text-transform: uppercase;
+            text-transform: capitalize;
         }
 
         .subtitle {
             font-size: 9px;
             margin-top: 2px;
             color: #555;
+            text-transform: capitalize;
         }
 
         table {
@@ -62,13 +62,18 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             white-space: nowrap;
+            font-size: 8px;
+        }
+
+        /* Standardize table text formatting to Capitalize */
+        .capitalize-text {
+            text-transform: capitalize;
         }
 
         th {
             background-color: #008C45;
             color: white;
             text-transform: uppercase;
-            font-size: 8px;
             text-align: center;
         }
 
@@ -88,9 +93,9 @@
     <div class="header">
         <div class="branch-title">KUPPET HOMABAY BRANCH</div>
         <img src="{{ public_path('assets/images/kuppet-logo.png') }}" alt="KUPPET Logo">
-        <h2>{{ $announcement->title }}</h2>
+        <h2>{{ ucwords(strtolower($announcement->title)) }}</h2>
         <div class="subtitle">
-            Year: {{ $announcement->year }} | Level: {{ ucwords(str_replace('_', ' ', $announcement->level)) }}
+            Year: {{ $announcement->year }} | Level: {{ ucwords(strtolower(str_replace('_', ' ', $announcement->level))) }}
         </div>
     </div>
 
@@ -118,18 +123,18 @@
             @forelse($applications as $index => $app)
                 <tr>
                     <td class="text-center">{{ $index + 1 }}</td>
-                    <td class="text-left">{{ $app->full_name }}</td>
+                    <td class="text-left capitalize-text">{{ strtolower($app->full_name) }}</td>
                     <td class="text-center">{{ (str_starts_with(strtoupper($app->gender), 'F')) ? 'F' : 'M' }}</td>
                     <td class="text-center">{{ $app->pwd ? 'Yes' : '-' }}</td>
                     <td class="text-center">{{ $app->id_number }}</td>
                     <td class="text-center">{{ $app->tsc_number }}</td>
                     <td class="text-center">{{ $app->phone_number }}</td>
-                    <td class="text-left">{{ optional($app->subCounty)->name }}</td>
-                    <td class="text-left">{{ $app->zone }}</td>
-                    <td class="text-left">{{ $app->school }}</td>
-                    <td class="text-left">{{ $app->subject }} ({{ $app->paper }})</td>
-                    <td class="text-center">{{ \Carbon\Carbon::parse($app->date_of_training)->format('d/m/y') }}</td>
-                    <td class="text-center">{{ $app->created_at->format('d/m/y') }}</td>
+                    <td class="text-left capitalize-text">{{ strtolower(optional($app->subCounty)->name) }}</td>
+                    <td class="text-left capitalize-text">{{ strtolower($app->zone) }}</td>
+                    <td class="text-left capitalize-text">{{ strtolower($app->school) }}</td>
+                    <td class="text-left capitalize-text">{{ strtolower($app->subject) }} ({{ strtoupper($app->paper) }})</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($app->date_of_training)->format('d/m/Y') }}</td>
+                    <td class="text-center">{{ $app->created_at->format('d/m/Y') }}</td>
                 </tr>
             @empty
                 <tr>
