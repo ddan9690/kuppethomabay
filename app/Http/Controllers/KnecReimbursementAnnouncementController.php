@@ -48,22 +48,22 @@ class KnecReimbursementAnnouncementController extends Controller
             ->with('success', 'Announcement portal created successfully.');
     }
 
-    public function show(Request $request, $id, $slug = null)
-    {
-        $announcement = KnecReimbursementAnnouncement::findOrFail($id);
+   public function show(Request $request, $id, $slug = null)
+{
+    $announcement = KnecReimbursementAnnouncement::findOrFail($id);
 
-        if ($slug && $announcement->slug !== $slug) {
-            return redirect()->route('admin.knec-reimbursements.show', ['announcement' => $announcement->id, 'slug' => $announcement->slug]);
-        }
-
-        // Paginate 30 records per page as requested
-        $applications = $announcement->applications()
-            ->with('subCounty')
-            ->latest()
-            ->paginate(30);
-
-        return view('pages.backend.knec-reimbursements.announcements.show', compact('announcement', 'applications'));
+    if ($slug && $announcement->slug !== $slug) {
+        return redirect()->route('admin.knec-reimbursements.show', ['announcement' => $announcement->id, 'slug' => $announcement->slug]);
     }
+
+    // Paginate 30 records per page, displaying the earliest applicants at the top
+    $applications = $announcement->applications()
+        ->with('subCounty')
+        ->orderBy('created_at', 'asc')
+        ->paginate(30);
+
+    return view('pages.backend.knec-reimbursements.announcements.show', compact('announcement', 'applications'));
+}
 
     public function edit($id, $slug = null)
     {

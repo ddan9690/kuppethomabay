@@ -133,8 +133,8 @@
                     <td class="text-left capitalize-text">{{ strtolower($app->zone) }}</td>
                     <td class="text-left capitalize-text">{{ strtolower($app->school) }}</td>
                     <td class="text-left capitalize-text">{{ strtolower($app->subject) }} ({{ strtoupper($app->paper) }})</td>
-                    <td class="text-center">{{ \Carbon\Carbon::parse($app->date_of_training)->format('d/m/Y') }}</td>
-                    <td class="text-center">{{ $app->created_at->format('d/m/Y') }}</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($app->date_of_training)->format('d/m/y') }}</td>
+                    <td class="text-center">{{ $app->created_at->format('d/m/y') }}</td>
                 </tr>
             @empty
                 <tr>

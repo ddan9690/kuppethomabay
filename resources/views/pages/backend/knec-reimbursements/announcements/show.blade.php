@@ -42,7 +42,7 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('knec-reimbursements.pdf', $announcement->id) }}"
                         class="bg-gold text-white text-xs px-3 py-1.5 rounded hover:bg-gold-dark transition font-semibold">
-                        Download PDF
+                        Download Applications PDF
                     </a>
                     <a href="{{ route('admin.knec-reimbursements.edit', [$announcement->id, $announcement->slug]) }}"
                         class="bg-green text-white text-xs px-3 py-1.5 rounded hover:bg-green-dark transition font-semibold">
@@ -113,7 +113,7 @@
                                     {{ $app->subject }} ({{ $app->paper }})
                                 </td>
                                 <td class="p-1.5 border text-center text-gray-800 whitespace-nowrap">
-                                    {{ \Carbon\Carbon::parse($app->date_of_training)->format('d/m/Y') }}
+                                    {{ \Carbon\Carbon::parse($app->date_of_training)->format('d/m/y') }}
                                 </td>
                                 <td class="p-1.5 border text-center text-gray-800 whitespace-nowrap">
                                     {{ $app->created_at->format('d/m/y') }}
