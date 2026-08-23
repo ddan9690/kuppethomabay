@@ -150,16 +150,14 @@
                            class="w-full text-xs sm:text-sm border border-gray-300 rounded p-2 focus:ring-green focus:border-green">
                 </div>
 
-                <!-- School Level -->
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">School Level *</label>
-                    <select name="level" required class="w-full text-xs sm:text-sm border border-gray-300 rounded p-2 bg-white focus:ring-green focus:border-green">
-                        <option value="">-- Select School Level --</option>
-                        <option value="Primary" {{ old('level') == 'Primary' ? 'selected' : '' }}>Primary</option>
-                        <option value="Junior School" {{ old('level') == 'Junior School' ? 'selected' : '' }}>Junior School</option>
-                        <option value="Senior School" {{ old('level') == 'Senior School' ? 'selected' : '' }}>Senior School</option>
-                        <option value="Tertiary" {{ old('level') == 'Tertiary' ? 'selected' : '' }}>Tertiary</option>
-                    </select>
+                <!-- PWD Checkbox Field -->
+                <div class="flex flex-col justify-end">
+                    <input type="hidden" name="pwd" value="0">
+                    <label class="flex items-center space-x-2 cursor-pointer pt-2">
+                        <input type="checkbox" name="pwd" value="1" {{ old('pwd') ? 'checked' : '' }} 
+                               class="rounded border-gray-300 text-green focus:ring-green h-4 w-4">
+                        <span class="text-xs font-semibold text-gray-700">Are you a Person with Disability (PWD)?</span>
+                    </label>
                 </div>
             </div>
 
@@ -177,11 +175,32 @@
                     </select>
                 </div>
 
+                <!-- Zone (Added right after Sub County) -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Zone *</label>
+                    <input type="text" name="zone" value="{{ old('zone') }}" required 
+                           class="w-full text-xs sm:text-sm border border-gray-300 rounded p-2 focus:ring-green focus:border-green" placeholder="e.g. Central Zone">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- School -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">School *</label>
                     <input type="text" name="school" value="{{ old('school') }}" required 
                            class="w-full text-xs sm:text-sm border border-gray-300 rounded p-2 focus:ring-green focus:border-green">
+                </div>
+
+                <!-- School Level -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">School Level *</label>
+                    <select name="level" required class="w-full text-xs sm:text-sm border border-gray-300 rounded p-2 bg-white focus:ring-green focus:border-green">
+                        <option value="">-- Select School Level --</option>
+                        <option value="Primary" {{ old('level') == 'Primary' ? 'selected' : '' }}>Primary</option>
+                        <option value="Junior School" {{ old('level') == 'Junior School' ? 'selected' : '' }}>Junior School</option>
+                        <option value="Senior School" {{ old('level') == 'Senior School' ? 'selected' : '' }}>Senior School</option>
+                        <option value="Tertiary" {{ old('level') == 'Tertiary' ? 'selected' : '' }}>Tertiary</option>
+                    </select>
                 </div>
             </div>
 

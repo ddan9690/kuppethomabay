@@ -34,7 +34,7 @@
                     <input type="number" name="year" value="{{ old('year', $announcement->year) }}" required class="border rounded p-2 w-full focus:ring-2 focus:ring-green">
                 </div>
                 <div>
-                    <label class="block font-medium mb-1">Educational Level</label>
+                    <label class="block font-medium mb-1">Level</label>
                     <select name="level" required class="border rounded p-2 w-full focus:ring-2 focus:ring-green">
                         <option value="senior_school" {{ old('level', $announcement->level) == 'senior_school' ? 'selected' : '' }}>Senior School</option>
                         <option value="junior_school" {{ old('level', $announcement->level) == 'junior_school' ? 'selected' : '' }}>Junior School</option>
@@ -60,7 +60,7 @@
 
             <div class="flex items-center gap-2 pt-2">
                 <input type="checkbox" name="is_active" id="is_active" value="1" class="rounded text-green focus:ring-green" {{ old('is_active', $announcement->is_active) ? 'checked' : '' }}>
-                <label for="is_active" class="font-medium">Set as Active Portal (Frontend visible)</label>
+                <label for="is_active" class="font-medium">Set as Active Portal</label>
             </div>
 
             <div class="flex gap-2 pt-4">

@@ -41,9 +41,6 @@ class KnecReimbursementApplicationController extends Controller
     /**
      * Store a newly submitted application in storage.
      */
-    /**
-     * Store a newly submitted application in storage.
-     */
     public function store(Request $request, $id, $slug)
     {
         $announcement = KnecReimbursementAnnouncement::where('id', $id)
@@ -55,11 +52,13 @@ class KnecReimbursementApplicationController extends Controller
         $validated = $request->validate([
             'full_name' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'in:Male,Female'],
+            'pwd' => ['required', 'boolean'], // Added PWD validation rule
             'id_number' => ['required', 'string', 'max:50'],
             'tsc_number' => ['required', 'string', 'max:50'],
             'phone_number' => ['required', 'string', 'max:20'],
             'level' => ['required', 'string', 'max:100'],
             'sub_county_id' => ['required', 'exists:sub_counties,id'],
+            'zone' => ['required', 'string', 'max:255'], // Added Zone validation rule
             'school' => ['required', 'string', 'max:255'],
             'date_of_training' => ['required', 'date'],
             'training_center' => ['required', 'string', 'max:255'],

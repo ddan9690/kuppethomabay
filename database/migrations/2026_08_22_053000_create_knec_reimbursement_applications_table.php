@@ -11,16 +11,19 @@ return new class extends Migration
         Schema::create('knec_reimbursement_applications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('announcement_id')
-                  ->constrained('knec_reimbursement_announcements')
-                  ->cascadeOnDelete();
+                ->constrained('knec_reimbursement_announcements')
+                ->cascadeOnDelete();
             $table->string('full_name');
             $table->enum('gender', ['Male', 'Female']);
             $table->string('id_number');
             $table->string('tsc_number');
             $table->string('phone_number');
+            $table->boolean('pwd')->default(false);
+
             $table->foreignId('sub_county_id')->constrained('sub_counties')->cascadeOnDelete();
+            $table->string('zone');
             $table->string('school');
-            $table->string('level'); 
+            $table->string('level');
             $table->date('date_of_training');
             $table->string('training_center');
             $table->string('subject');
@@ -28,7 +31,7 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->text('remarks')->nullable();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
-            
+
             $table->timestamps();
         });
     }

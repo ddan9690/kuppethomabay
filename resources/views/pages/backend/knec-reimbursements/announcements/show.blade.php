@@ -64,10 +64,12 @@
                             <th class="p-1.5 border text-center whitespace-nowrap">#</th>
                             <th class="p-1.5 border text-left whitespace-nowrap">Name</th>
                             <th class="p-1.5 border text-center whitespace-nowrap">Gender</th>
+                            <th class="p-1.5 border text-center whitespace-nowrap">PWD</th>
                             <th class="p-1.5 border text-center whitespace-nowrap">ID No.</th>
                             <th class="p-1.5 border text-center whitespace-nowrap">TSC No.</th>
                             <th class="p-1.5 border text-center whitespace-nowrap">Phone</th>
                             <th class="p-1.5 border text-left whitespace-nowrap">Sub County</th>
+                            <th class="p-1.5 border text-left whitespace-nowrap">Zone</th>
                             <th class="p-1.5 border text-left whitespace-nowrap">School</th>
                             <th class="p-1.5 border text-left whitespace-nowrap">Subject/Paper</th>
                             <th class="p-1.5 border text-center whitespace-nowrap">Date of Training</th>
@@ -86,6 +88,9 @@
                                 <td class="p-1.5 border text-center text-gray-800 whitespace-nowrap">
                                     {{ str_starts_with(strtoupper($app->gender), 'F') ? 'F' : 'M' }}
                                 </td>
+                                <td class="p-1.5 border text-center text-gray-800 whitespace-nowrap">
+                                    {{ $app->pwd ? 'Yes' : '-' }}
+                                </td>
                                 <td class="p-1.5 border text-center font-mono text-gray-800 whitespace-nowrap">
                                     {{ $app->id_number }}
                                 </td>
@@ -97,6 +102,9 @@
                                 </td>
                                 <td class="p-1.5 border text-gray-800 whitespace-nowrap">
                                     {{ optional($app->subCounty)->name }}
+                                </td>
+                                <td class="p-1.5 border text-gray-800 whitespace-nowrap">
+                                    {{ $app->zone }}
                                 </td>
                                 <td class="p-1.5 border text-gray-800 whitespace-nowrap">
                                     {{ $app->school }}
@@ -113,7 +121,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="11" class="p-6 text-center text-gray-500">
+                                <td colspan="13" class="p-6 text-center text-gray-500">
                                     No applications have been submitted for this reimbursement portal yet.
                                 </td>
                             </tr>

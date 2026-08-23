@@ -19,7 +19,9 @@ class KnecReimbursementApplication extends Model
         'tsc_number',
         'phone_number',
         'gender',
+        'pwd',         
         'sub_county_id',
+        'zone',        
         'school',
         'level',
         'date_of_training',
@@ -29,6 +31,10 @@ class KnecReimbursementApplication extends Model
         'status',
         'remarks',
         'updated_by',
+    ];
+
+    protected $casts = [
+        'pwd' => 'boolean', // Automatically casts 1/0 to true/false
     ];
 
     public function announcement(): BelongsTo

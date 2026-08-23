@@ -12,7 +12,7 @@
 
         body {
             font-family: DejaVu Sans, sans-serif;
-            font-size: 8.5px;
+            font-size: 8px;
             color: #000;
         }
 
@@ -56,7 +56,7 @@
 
         th, td {
             border: 1px solid #000;
-            padding: 3px 4px;
+            padding: 3px 3px;
             vertical-align: middle;
             word-wrap: break-word;
             overflow-wrap: break-word;
@@ -67,7 +67,7 @@
             background-color: #008C45;
             color: white;
             text-transform: uppercase;
-            font-size: 8.5px;
+            font-size: 8px;
             text-align: center;
         }
 
@@ -100,10 +100,12 @@
                 <th class="text-center">#</th>
                 <th class="text-left">Name</th>
                 <th class="text-center">G</th>
+                <th class="text-center">PWD</th>
                 <th class="text-center">ID No.</th>
                 <th class="text-center">TSC No.</th>
                 <th class="text-center">Phone</th>
                 <th class="text-left">Sub County</th>
+                <th class="text-left">Zone</th>
                 <th class="text-left">School</th>
                 <th class="text-left">Subject/Paper</th>
                 <th class="text-center">Trained</th>
@@ -117,10 +119,12 @@
                     <td class="text-center">{{ $index + 1 }}</td>
                     <td class="text-left">{{ $app->full_name }}</td>
                     <td class="text-center">{{ (str_starts_with(strtoupper($app->gender), 'F')) ? 'F' : 'M' }}</td>
+                    <td class="text-center">{{ $app->pwd ? 'Yes' : '-' }}</td>
                     <td class="text-center">{{ $app->id_number }}</td>
                     <td class="text-center">{{ $app->tsc_number }}</td>
                     <td class="text-center">{{ $app->phone_number }}</td>
                     <td class="text-left">{{ optional($app->subCounty)->name }}</td>
+                    <td class="text-left">{{ $app->zone }}</td>
                     <td class="text-left">{{ $app->school }}</td>
                     <td class="text-left">{{ $app->subject }} ({{ $app->paper }})</td>
                     <td class="text-center">{{ \Carbon\Carbon::parse($app->date_of_training)->format('d/m/y') }}</td>
@@ -128,7 +132,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="11" style="text-align:center; padding: 10px;">
+                    <td colspan="13" style="text-align:center; padding: 10px;">
                         No applications found for this announcement.
                     </td>
                 </tr>
