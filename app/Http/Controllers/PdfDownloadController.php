@@ -7,6 +7,7 @@ use App\Models\BbfMembership;
 use App\Models\ChronicIllnessInfo;
 use App\Models\FacilityExperience;
 use App\Models\Feedback;
+use App\Models\KnecReimbursementAnnouncement;
 use App\Models\YouthfulTeacher;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -87,5 +88,25 @@ class PdfDownloadController extends Controller
         );
 
         return $pdf->download('youthful_teachers_database_2026_' . now()->format('Y-m-d') . '.pdf');
+    }
+
+    public function knecReimbursementApplications($id)
+    {
+        $announcement = KnecReimbursementAnnouncement::findOrFail($id);
+
+        $applications = $announcement->applications()
+            ->with('subCounty')
+            ->latest()
+            ->get();
+
+        // Updated path to match your folder structure
+        $pdf = Pdf::loadView(
+            'pages.backend.knec-reimbursements.knecreimbusmentpdf',
+            compact('announcement', 'applications')
+        );
+
+        $pdf->setPaper('a4', 'landscape');
+
+        return $pdf->download('knec_reimbursements_' . $announcement->year . '_' . now()->format('Y-m-d') . '.pdf');
     }
 }

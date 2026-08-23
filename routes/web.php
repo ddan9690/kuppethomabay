@@ -10,6 +10,8 @@ use App\Http\Controllers\DocumentUploadController;
 use App\Http\Controllers\FacilityExperienceController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KnecReimbursementAnnouncementController;
+use App\Http\Controllers\KnecReimbursementApplicationController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OfficialsController;
 use App\Http\Controllers\PdfDownloadController;
@@ -65,6 +67,11 @@ Route::post('/KUPEPT-Homabay-SHA-chronic-illness-challenges-feedback', [ChronicI
 Route::get('/agency-payer', [AgencyPayerController::class, 'create'])->name('agency_payer.create');
 Route::post('/agency-payer', [AgencyPayerController::class, 'store'])->name('agency_payer.store');
 
+// KNEC Examiner Reimbursements Public Application Portal
+Route::get('/knec', [KnecReimbursementApplicationController::class, 'index'])->name('knec-reimbursements.index');
+Route::get('/knec/{id}/{slug}', [KnecReimbursementApplicationController::class, 'create'])->name('knec-reimbursements.create');
+Route::post('/knec-examiner-reimbursement/{id}/{slug}', [KnecReimbursementApplicationController::class, 'store'])->name('knec-reimbursements.store');
+
 Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
 Route::get('/claims', [ClaimController::class, 'index'])->name('bbf.claims.index');
 Route::get('/claims/terms', [ClaimController::class, 'terms'])->name('bbf.claims.terms');
@@ -117,6 +124,26 @@ Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->
         Route::delete('{subCountyBbfRep}', [SubCountyBbfRepController::class, 'destroy'])->name('sub_county_bbf_reps.destroy');
     });
 
+    // KNEC Examiner Reimbursements Admin Backend Routes
+    Route::prefix('admin/knec-reimbursements')->name('admin.knec-reimbursements.')->group(function () {
+        // Announcements Management
+        Route::get('/', [KnecReimbursementAnnouncementController::class, 'index'])->name('index');
+        Route::get('/create', [KnecReimbursementAnnouncementController::class, 'create'])->name('create');
+        Route::post('/', [KnecReimbursementAnnouncementController::class, 'store'])->name('store');
+        Route::get('/{announcement}/{slug?}', [KnecReimbursementAnnouncementController::class, 'show'])->name('show');
+        Route::get('/{announcement}/{slug?}/edit', [KnecReimbursementAnnouncementController::class, 'edit'])->name('edit');
+        Route::put('/{announcement}', [KnecReimbursementAnnouncementController::class, 'update'])->name('update');
+        Route::patch('/{announcement}/status', [KnecReimbursementAnnouncementController::class, 'toggleStatus'])->name('status');
+        Route::delete('/{announcement}', [KnecReimbursementAnnouncementController::class, 'destroy'])->name('destroy');
+
+        // Applications Management under Announcements
+        Route::get('/{announcement}/{slug?}/applications', [KnecReimbursementApplicationController::class, 'index'])->name('applications');
+        Route::get('/application/{application}', [KnecReimbursementApplicationController::class, 'show'])->name('application.show');
+        Route::get('/application/{application}/edit', [KnecReimbursementApplicationController::class, 'edit'])->name('application.edit');
+        Route::put('/application/{application}', [KnecReimbursementApplicationController::class, 'update'])->name('application.update');
+        Route::delete('/application/{application}', [KnecReimbursementApplicationController::class, 'destroy'])->name('application.destroy');
+    });
+
     Route::prefix('admin/news')->group(function () {
         Route::get('/', [NewsController::class, 'index'])->name('admin.news.index');
         Route::get('create', [NewsController::class, 'create'])->name('admin.news.create');
@@ -142,5 +169,7 @@ Route::middleware(['auth', 'role:executive|organising-secretary|super-admin'])->
 
         Route::get('/sha-chronic-illness-reports', [ChronicIllnessInfoController::class, 'index'])->name('chronic-illness-infos.index');
         Route::get('/sha-chronic-illness-reports/pdf', [PdfDownloadController::class, 'chronicIllnessReports'])->name('chronic-illness.pdf');
-        });
+        Route::get('knec-reimbursements/announcements/{id}/pdf', [PdfDownloadController::class, 'knecReimbursementApplications'])
+            ->name('knec-reimbursements.pdf');
+    });
 });

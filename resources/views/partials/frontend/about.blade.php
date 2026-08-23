@@ -19,23 +19,52 @@
         </a>
 
         {{-- Divider --}}
-        <div class="border-t border-gray my-8 max-w-md mx-auto md:mx-0"></div>
+        <div class="border-t border-gray my-8 max-w-full"></div>
 
-        {{-- Link to TSC Regulation 20 Page --}}
-        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red max-w-md mx-auto md:mx-0 mb-8">
-            <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">⚠️ Important Notice for Members</p>
-            <h3 class="text-xl font-bold text-gray-dark mb-2">TSC Regulation 20 Proposed Changes</h3>
-            <p class="text-gray-dark mb-4">
-                TSC has invited stakeholders to submit proposals on changes to teacher qualification requirements.
-                Deadline: <span class="font-bold text-red">13th May 2026</span>
-            </p>
-            <a href="{{ route('tsc.regulation20') }}" 
-               class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-5 py-2 rounded-lg font-semibold transition">
-                📖 Read Full Notice
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
+        {{-- Side-by-Side Notice Cards Grid for Desktop --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto md:mx-0 mb-8">
+            
+            {{-- Link to KNEC Reimbursements Page --}}
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green flex flex-col justify-between">
+                <div>
+                    <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">📋 Active Portal</p>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">KNEC Examiner Reimbursements</h3>
+                    <p class="text-gray-dark mb-4 text-sm">
+                        Reimbursement for teachers of Homa Bay who applied and attended KNEC training.
+                    </p>
+                </div>
+                <div>
+                    <a href="{{ route('knec-reimbursements.index') }}" 
+                       class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-5 py-2 rounded-lg font-semibold transition">
+                        🚀 Apply Now
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Link to TSC Regulation 20 Page --}}
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red flex flex-col justify-between">
+                <div>
+                    <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">⚠️ Important Notice for Members</p>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">TSC Regulation 20 Proposed Changes</h3>
+                    <p class="text-gray-dark mb-4 text-sm">
+                        TSC has invited stakeholders to submit proposals on changes to teacher qualification requirements.
+                        Deadline: <span class="font-bold text-red">13th May 2026</span>
+                    </p>
+                </div>
+                <div>
+                    <a href="{{ route('tsc.regulation20') }}" 
+                       class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-5 py-2 rounded-lg font-semibold transition">
+                        📖 Read Full Notice
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
         </div>
 
         {{-- Action Cards / Buttons Grid --}}

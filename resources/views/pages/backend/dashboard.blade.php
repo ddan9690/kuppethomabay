@@ -9,6 +9,24 @@
     {{-- QUICK ACCESS --}}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+        {{-- KNEC Reimbursements Management --}}
+        <a href="{{ route('admin.knec-reimbursements.index') }}"
+           class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition border-l-4 border-green">
+
+            <h2 class="text-xl font-bold text-gray-800 mb-2">
+                KNEC Reimbursements
+            </h2>
+
+            <p class="text-gray-600">
+                Manage reimbursement announcement portals, view submitted applications, and track active configurations.
+            </p>
+
+            <div class="mt-4 text-green font-semibold">
+                Manage Portals →
+            </div>
+
+        </a>
+
         {{-- SHA Chronic Illness Feedback VIEW ONLY --}}
         <a href="{{ route('chronic-illness-infos.index') }}"
            class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition border-l-4 border-green">
