@@ -74,6 +74,10 @@ class UsersSeeder extends Seeder
                 'email' => 'atanga@kuppethomabay',
                 'name' => 'Atanga Kennedy',
             ],
+            [
+                'email' => 'kennedyosewe@kuppethomabay',
+                'name' => 'Kennedy Osewe',
+            ],
         ];
 
         foreach ($executives as $exec) {
