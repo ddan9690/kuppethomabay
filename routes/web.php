@@ -33,6 +33,8 @@ Route::view('/news/kuppet-homabay-graces-nyanza-term-2-regional-championship', '
     ->name('report.nyanza-championships');
 Route::view('/cba-2025-2029-status', 'pages.frontend.cba-status-2025-2029')
     ->name('cba.status-2025-2029');
+Route::view('/kuppet-homabay-health', 'pages.frontend.health.index')->name('health');
+Route::view('/homabay-health-facilities', 'pages.frontend.health.health-facilities')->name('health.facilities');
 
 
 Route::prefix('bec-office')->group(function () {

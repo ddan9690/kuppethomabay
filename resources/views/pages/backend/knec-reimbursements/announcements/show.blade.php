@@ -18,18 +18,34 @@
             <div
                 class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <div class="flex items-center gap-2 mb-1">
+                    <div class="flex flex-wrap items-center gap-2 mb-1">
                         <span class="bg-green-100 text-green-700 text-xs px-2.5 py-0.5 rounded font-bold">
                             Year: {{ $announcement->year }}
                         </span>
                         <span class="bg-indigo-100 text-indigo-700 text-xs px-2.5 py-0.5 rounded font-bold">
                             Level: {{ ucwords(str_replace('_', ' ', $announcement->level)) }}
                         </span>
-                        <span
-                            class="px-2.5 py-0.5 rounded text-xs font-semibold {{ $announcement->status === 'open' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
-                            Status: {{ ucfirst($announcement->status) }}
-                        </span>
+
+                        <!-- Interactive Status Toggle Button -->
+                        <button type="button" 
+                                onclick="confirmToggleStatus({{ $announcement->id }}, '{{ $announcement->status }}')"
+                                class="group relative inline-flex flex-col items-center justify-center px-2.5 py-1 rounded text-xs font-bold transition shadow-sm {{ $announcement->status === 'open' ? 'bg-green-100 text-green-800 hover:bg-green-200 border border-green-300' : 'bg-red-100 text-red-800 hover:bg-red-200 border border-red-300' }}"
+                                title="Click to toggle status">
+                            <span class="flex items-center gap-1">
+                                @if($announcement->status === 'open')
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                    Status: Applications <span class="text-green-600 font-extrabold ml-0.5">Open</span>
+                                @else
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                    Status: Applications <span class="text-red-600 font-extrabold ml-0.5">Closed</span>
+                                @endif
+                            </span>
+                            <span class="text-[9px] font-normal opacity-75 group-hover:underline">
+                                {{ $announcement->status === 'open' ? 'Click to close' : 'Click to open' }}
+                            </span>
+                        </button>
                     </div>
+
                     <h2 class="text-lg md:text-xl font-bold text-green">
                         {{ $announcement->title }}
                     </h2>
@@ -138,3 +154,54 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+<script>
+    function confirmToggleStatus(id, currentStatus) {
+        let isOpening = currentStatus === 'closed';
+        let actionText = isOpening ? 'open this application portal' : 'close this application portal';
+        let confirmButtonColor = isOpening ? '#10B981' : '#EF4444';
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You are about to ${actionText}. Members will ${isOpening ? 'be able' : 'no longer be able'} to submit applications.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: confirmButtonColor,
+            cancelButtonColor: '#6B7280',
+            confirmButtonText: `Yes, ${isOpening ? 'Open' : 'Close'} It!`
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    let response = await fetch(`/admin/knec-reimbursements/${id}/status`, {
+                        method: 'PATCH',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        let data = await response.json();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Updated!',
+                            text: data.message,
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => window.location.reload());
+                    } else {
+                        throw new Error('Failed to update status.');
+                    }
+                } catch (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: 'Something went wrong. Please try again.'
+                    });
+                }
+            }
+        });
+    }
+</script>
+@endpush

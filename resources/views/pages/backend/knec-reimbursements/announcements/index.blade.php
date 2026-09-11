@@ -22,19 +22,6 @@
                 showConfirmButton: false
             }).then(() => window.location.reload());
         }
-    },
-    copyLink(url) {
-        navigator.clipboard.writeText(url).then(() => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Link Copied!',
-                text: 'Public application link copied to clipboard.',
-                timer: 1500,
-                showConfirmButton: false
-            });
-        }).catch(err => {
-            console.error('Failed to copy text: ', err);
-        });
     }
 }">
     <div class="container mx-auto px-2 sm:px-4 max-w-7xl">
@@ -65,7 +52,6 @@
                         <th class="p-2 border text-center">Level</th>
                         <th class="p-2 border text-center">Applications</th>
                         <th class="p-2 border text-center">Status</th>
-                        <th class="p-2 border text-center">Active Config</th>
                         <th class="p-2 border text-center">Actions</th>
                     </tr>
                 </thead>
@@ -99,22 +85,7 @@
                                     {{ ucfirst($announcement->status) }}
                                 </button>
                             </td>
-                            <td class="p-2 border text-center">
-                                @if($announcement->is_active)
-                                    <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-bold">Active</span>
-                                @else
-                                    <span class="text-gray-400 text-xs">Inactive</span>
-                                @endif
-                            </td>
                             <td class="p-2 border text-center space-x-1 whitespace-nowrap">
-                                <button @click="copyLink('{{ route('knec-reimbursements.create', [$announcement->id, $announcement->slug]) }}')" 
-                                        class="bg-gray-700 text-white px-2 py-1 rounded text-xs font-semibold hover:bg-gray-800"
-                                        title="Copy public application link">
-                                    Copy Link
-                                </button>
-                                <a href="{{ route('admin.knec-reimbursements.show', [$announcement->id, $announcement->slug]) }}" class="bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold hover:bg-blue-700">
-                                    View
-                                </a>
                                 <a href="{{ route('admin.knec-reimbursements.edit', [$announcement->id, $announcement->slug]) }}" class="bg-green text-white px-2 py-1 rounded text-xs font-semibold hover:bg-green-dark">
                                     Edit
                                 </a>
@@ -129,7 +100,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="p-4 text-center text-gray-500">
+                            <td colspan="6" class="p-4 text-center text-gray-500">
                                 No reimbursement announcement portals created yet.
                             </td>
                         </tr>

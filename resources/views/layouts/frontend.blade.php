@@ -88,8 +88,9 @@
 
 <body class="bg-gray-light text-gray-dark font-sans">
 
-    {{-- Header --}}
+    {{-- Main Header & Sub-Header Partials --}}
     @include('partials.frontend.header')
+    @include('partials.frontend.sub-header')
     @include('partials.frontend.sha-banner')
 
     {{-- Main Content --}}

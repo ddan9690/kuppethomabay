@@ -48,22 +48,22 @@ class KnecReimbursementAnnouncementController extends Controller
             ->with('success', 'Announcement portal created successfully.');
     }
 
-   public function show(Request $request, $id, $slug = null)
-{
-    $announcement = KnecReimbursementAnnouncement::findOrFail($id);
+    public function show(Request $request, $id, $slug = null)
+    {
+        $announcement = KnecReimbursementAnnouncement::findOrFail($id);
 
-    if ($slug && $announcement->slug !== $slug) {
-        return redirect()->route('admin.knec-reimbursements.show', ['announcement' => $announcement->id, 'slug' => $announcement->slug]);
+        if ($slug && $announcement->slug !== $slug) {
+            return redirect()->route('admin.knec-reimbursements.show', ['announcement' => $announcement->id, 'slug' => $announcement->slug]);
+        }
+
+        // Paginate 30 records per page, displaying the earliest applicants at the top
+        $applications = $announcement->applications()
+            ->with('subCounty')
+            ->orderBy('created_at', 'asc')
+            ->paginate(30);
+
+        return view('pages.backend.knec-reimbursements.announcements.show', compact('announcement', 'applications'));
     }
-
-    // Paginate 30 records per page, displaying the earliest applicants at the top
-    $applications = $announcement->applications()
-        ->with('subCounty')
-        ->orderBy('created_at', 'asc')
-        ->paginate(30);
-
-    return view('pages.backend.knec-reimbursements.announcements.show', compact('announcement', 'applications'));
-}
 
     public function edit($id, $slug = null)
     {
@@ -97,7 +97,6 @@ class KnecReimbursementAnnouncementController extends Controller
         return redirect()->route('admin.knec-reimbursements.index')
             ->with('success', 'Announcement portal updated successfully.');
     }
-
     public function toggleStatus($id)
     {
         $announcement = KnecReimbursementAnnouncement::findOrFail($id);
@@ -105,10 +104,12 @@ class KnecReimbursementAnnouncementController extends Controller
         $announcement->status = $announcement->status === 'open' ? 'closed' : 'open';
         $announcement->save();
 
+        $statusText = $announcement->status === 'open' ? 'ongoing (Open)' : 'closed';
+
         return response()->json([
             'success' => true,
             'status' => $announcement->status,
-            'message' => 'Status updated successfully to ' . ucfirst($announcement->status)
+            'message' => 'Applications are now ' . $statusText . '.'
         ]);
     }
 
