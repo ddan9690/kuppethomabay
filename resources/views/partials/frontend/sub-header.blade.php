@@ -9,7 +9,7 @@
             TSC Resources ↗
         </a>
 
-        <a href="{{ url('/legal/constitution') }}" class="hover:text-gold transition font-semibold uppercase tracking-wider">
+        {{-- <a href="{{ url('/legal/constitution') }}" class="hover:text-gold transition font-semibold uppercase tracking-wider">
             Legal Resources
         </a>
 
@@ -27,7 +27,7 @@
 
         <a href="{{ url('/gallery') }}" class="hover:text-gold transition font-semibold uppercase tracking-wider">
             Gallery
-        </a>
+        </a> --}}
 
     </div>
 </div>
