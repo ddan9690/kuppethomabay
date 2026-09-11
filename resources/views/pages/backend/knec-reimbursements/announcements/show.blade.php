@@ -170,36 +170,54 @@
             confirmButtonColor: confirmButtonColor,
             cancelButtonColor: '#6B7280',
             confirmButtonText: `Yes, ${isOpening ? 'Open' : 'Close'} It!`
-        }).then(async (result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-                try {
-                    let response = await fetch(`/admin/knec-reimbursements/${id}/status`, {
-                        method: 'PATCH',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        let data = await response.json();
+                fetch(`/admin/knec-reimbursements/${id}/status`, {
+                    method: 'PATCH',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    return response.json().then(data => ({
+                        status: response.status,
+                        body: data
+                    }));
+                })
+                .then(res => {
+                    if (res.status === 200 || res.status === 201) {
                         Swal.fire({
                             icon: 'success',
                             title: 'Updated!',
-                            text: data.message,
+                            text: res.body.message || 'Status successfully updated.',
                             timer: 1500,
                             showConfirmButton: false
-                        }).then(() => window.location.reload());
+                        }).then(() => {
+                            if (res.body.redirect) {
+                                window.location.href = res.body.redirect;
+                            } else {
+                                window.location.reload();
+                            }
+                        });
                     } else {
-                        throw new Error('Failed to update status.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: res.body.message || 'Failed to update status. Please try again.',
+                            confirmButtonColor: '#16a34a'
+                        });
                     }
-                } catch (error) {
+                })
+                .catch(error => {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Oops!',
-                        text: 'Something went wrong. Please try again.'
+                        title: 'Network Error',
+                        text: 'Unable to connect to the server. Check your connection and try again.',
+                        confirmButtonColor: '#16a34a'
                     });
-                }
+                });
             }
         });
     }
