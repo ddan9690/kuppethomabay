@@ -9,13 +9,15 @@
             TSC Resources ↗
         </a>
 
+         <a href="{{ url('/kuppet-homabay-health') }}" class="hover:text-gold transition font-semibold uppercase tracking-wider">
+            Health & SHA
+        </a>
+
         {{-- <a href="{{ url('/legal/constitution') }}" class="hover:text-gold transition font-semibold uppercase tracking-wider">
             Legal Resources
         </a>
 
-        <a href="{{ url('/kuppet-homabay-health') }}" class="hover:text-gold transition font-semibold uppercase tracking-wider">
-            Health & SHA
-        </a>
+       
 
         <a href="{{ url('/advocacy/legal-rights') }}" class="hover:text-gold transition font-semibold uppercase tracking-wider">
             Advocacy
