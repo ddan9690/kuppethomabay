@@ -35,7 +35,8 @@ Route::view('/cba-2025-2029-status', 'pages.frontend.cba-status-2025-2029')
     ->name('cba.status-2025-2029');
 Route::view('/kuppet-homabay-health', 'pages.frontend.health.index')->name('health');
 Route::view('/homabay-health-facilities', 'pages.frontend.health.health-facilities')->name('health.facilities');
-
+Route::view('/kuppet-homabay-pro-rata-delegates-2026', 'pages.frontend.pro-rata-delegates')
+    ->name('pro-rata-delegates');
 
 Route::prefix('bec-office')->group(function () {
     Route::get('/', [OfficialsController::class, 'index'])->name('bec.officials');

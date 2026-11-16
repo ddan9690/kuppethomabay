@@ -24,8 +24,28 @@
         {{-- Side-by-Side Notice Cards Grid for Desktop --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto md:mx-0 mb-8">
             
+            {{-- Link to Pro-Rata Delegates Page (First Card) --}}
+            <div class="bg-white p-6 flex flex-col justify-between">
+                <div>
+                    <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">Important Announcement</p>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">Notification of BEC-Selected Pro-Rata Delegates (2026 ADC)</h3>
+                    <p class="text-gray-dark mb-4 text-sm">
+                        Notification of BEC-selected pro-rata delegates to the 2026 Annual Delegates Conference (ADC) scheduled for Saturday, 21st November 2026.
+                    </p>
+                </div>
+                <div>
+                    <a href="{{ route('pro-rata-delegates') }}" 
+                       class="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-white px-5 py-2 rounded font-semibold transition">
+                        View Delegates List
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
             {{-- Link to KNEC Reimbursements Page --}}
-            <div class="bg-white p-6 rounded shadow flex flex-col justify-between">
+            <div class="bg-white p-6 flex flex-col justify-between">
                 <div>
                     <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">KNEC Training</p>
                     <h3 class="text-xl font-bold text-gray-dark mb-2">KNEC Training Reimbursement</h3>
@@ -45,7 +65,7 @@
             </div>
 
             {{-- Link to TSC Regulation 20 Page --}}
-            <div class="bg-white p-6 rounded shadow flex flex-col justify-between">
+            <div class="bg-white p-6 flex flex-col justify-between">
                 <div>
                     <p class="text-sm text-gray-dark uppercase tracking-wide font-semibold mb-2">Important Notice for Members</p>
                     <h3 class="text-xl font-bold text-gray-dark mb-2">TSC Regulation 20 Proposed Changes</h3>
